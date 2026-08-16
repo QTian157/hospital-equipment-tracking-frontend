@@ -2,8 +2,8 @@ import {NavMenu} from './NavMenu';
 
 export const Sidebar = () =>{
     return (
-        <div>
+        <aside>
             <NavMenu />
-        </div>
+        </aside>
     )
 }
