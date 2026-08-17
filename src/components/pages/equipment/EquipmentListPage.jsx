@@ -1,9 +1,16 @@
+import ErrorPage from "../ErrorPage";
 import LoadingPage from "../LoadingPage";
 
-const EquipmentListPage = ({equipmentList, isLoading}) =>{
-    console.log(equipmentList);
+const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
+    // console.log(equipmentList);
     if (isLoading) {
         return (<LoadingPage dataName={'equipment'}/>)
+    }else if (equipListError) {
+        return (
+        <ErrorPage>
+            {equipListError}
+        </ErrorPage>
+        )
     }
     return (
         <div>

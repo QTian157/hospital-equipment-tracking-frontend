@@ -7,6 +7,7 @@ import {Routes, Route, Navigate} from 'react-router'
 import AboutPage from './components/pages/AboutPage'
 import DashboardPage from './components/pages/DashboardPage'
 import EquipmentListPage from './components/pages/equipment/EquipmentListPage'
+import ErrorPage from './components/pages/ErrorPage'
 
 import Equipment from './classes/Equipment';
 
@@ -24,6 +25,7 @@ const parseJSONText = (rawText, dataName) => {
 function App() {
   const [equipmentList, setEquipmentList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [equipListError, setEquipListError] = useState(null)
   
   // useEffect(callback, dependencies);
   // callback: 1. cleanup function or 2. no return
@@ -61,8 +63,11 @@ function App() {
         })
 
         // console.log(equipmentList)
+        // Clear any previous error when fetch succeeds
+        setEquipListError(null);
       }catch(error){
         console.error(error.message);
+        setEquipListError(error.message);
 
       }finally{
         setEquipmentList(equipmentList);
@@ -88,7 +93,16 @@ function App() {
 
         <Routes>
           <Route path="/" element={ <DashboardPage />}/>
-          <Route path="/equipment" element={<EquipmentListPage equipmentList={equipmentList} isLoading={isLoading}/>}/>
+          <Route 
+            path="/equipment" 
+            element={
+              <EquipmentListPage 
+                equipmentList={equipmentList} 
+                isLoading={isLoading} 
+                equipListError={equipListError}
+              />
+            }
+          />
           <Route path="/about" element={ <AboutPage />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
