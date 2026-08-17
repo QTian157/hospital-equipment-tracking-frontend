@@ -1,7 +1,9 @@
-const EquipmentListPage = ({equipmentList}) =>{
+import LoadingPage from "../LoadingPage";
+
+const EquipmentListPage = ({equipmentList, isLoading}) =>{
     console.log(equipmentList);
-    if (equipmentList === null) {
-        return <div>Loading...</div>;
+    if (isLoading) {
+        return (<LoadingPage dataName={'equipment'}/>)
     }
     return (
         <div>

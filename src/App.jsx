@@ -23,6 +23,7 @@ const parseJSONText = (rawText, dataName) => {
 
 function App() {
   const [equipmentList, setEquipmentList] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   
   // useEffect(callback, dependencies);
   // callback: 1. cleanup function or 2. no return
@@ -38,7 +39,8 @@ function App() {
         if (!response.ok) {
           throw new Error(`Unable to retrieve equipment list (status ${response.status}).`);
         }
-        // await new Promise((resolve) => setTimeout(resolve, 3000)); test the loading
+        // await new Promise((resolve) => setTimeout(resolve, 3000)); 
+        // test the loading
         const rawText = await response.text();
         const data = parseJSONText(rawText, 'equipmentList');
         
@@ -58,20 +60,23 @@ function App() {
           return newEquipment
         })
 
-        console.log(equipmentList)
-        setEquipmentList(null);
-
+        // console.log(equipmentList)
       }catch(error){
         console.error(error.message);
 
       }finally{
         setEquipmentList(equipmentList);
-
       }
     }
     // call fetch()
     fetchEquipmentList();
   }, [])
+
+  useEffect(()=>{
+    if(isLoading && equipmentList != null) {
+      setIsLoading(false);
+    }
+  }, [isLoading, equipmentList])
 
 
   return (
@@ -83,12 +88,11 @@ function App() {
 
         <Routes>
           <Route path="/" element={ <DashboardPage />}/>
-          <Route path="/equipment" element={<EquipmentListPage equipmentList={equipmentList}/>}/>
+          <Route path="/equipment" element={<EquipmentListPage equipmentList={equipmentList} isLoading={isLoading}/>}/>
           <Route path="/about" element={ <AboutPage />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-
       <Footer />
     </div>
   )
