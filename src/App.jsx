@@ -36,8 +36,9 @@ function App() {
           'https://docs.google.com/document/d/1gUxxzGJCf40UcwYjiNgeVergYB0qeN2wC6JaAb1nJjE/export?format=txt'
         );
         if (!response.ok) {
-          throw new Error(`Unable to retrieve artworks (status ${response.status}).`);
+          throw new Error(`Unable to retrieve equipment list (status ${response.status}).`);
         }
+        // await new Promise((resolve) => setTimeout(resolve, 3000)); test the loading
         const rawText = await response.text();
         const data = parseJSONText(rawText, 'equipmentList');
         
@@ -57,7 +58,7 @@ function App() {
           return newEquipment
         })
 
-        // console.log(equipmentList)
+        console.log(equipmentList)
         setEquipmentList(null);
 
       }catch(error){
