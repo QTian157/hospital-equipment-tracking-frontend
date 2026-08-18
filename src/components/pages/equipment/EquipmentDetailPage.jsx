@@ -18,7 +18,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
     };
 
     const handleGoToEquipmentEditPage = ()=>{
-        navigate('/equipment/details/id/edit')
+        navigate(`/equipment/details/${id}/edit`)
     }
 
 

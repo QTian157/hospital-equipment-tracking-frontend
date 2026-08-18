@@ -20,7 +20,7 @@ const parseJSONText = (rawText, dataName) => {
     return JSON.parse(rawText)
   }catch{
     throw new Error(
-      'Unable to parse ${dataName}. Google Docs export uses plain text and should contain valid JSON.',
+      `Unable to parse ${dataName}. Google Docs export uses plain text and should contain valid JSON.`,
     )
   }
 }
@@ -117,7 +117,18 @@ function App() {
               />
             } 
           />
-          <Route path="/equipment/details/:id/edit" element={<EquipmentEditPage />} />
+          <Route 
+            path="/equipment/details/:id/edit" 
+            element={
+              <EquipmentEditPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+              />
+              
+            } 
+          
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
