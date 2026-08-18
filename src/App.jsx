@@ -10,6 +10,8 @@ import EquipmentListPage from './components/pages/equipment/EquipmentListPage'
 import EquipmentDetailPage from './components/pages/equipment/EquipmentDetailPage'
 import ErrorPage from './components/pages/ErrorPage'
 
+import EquipmentEditPage from './components/pages/equipment/EquipmentEditPage'
+
 import Equipment from './classes/Equipment';
 
 
@@ -115,6 +117,7 @@ function App() {
               />
             } 
           />
+          <Route path="/equipment/details/:id/edit" element={<EquipmentEditPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
