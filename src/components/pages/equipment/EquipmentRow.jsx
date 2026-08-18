@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 const EquipmentRow = ({equip})=>{
     return (
@@ -7,7 +8,12 @@ const EquipmentRow = ({equip})=>{
             <td>{equip.status}</td>
             <td>{equip.department}</td>
             <td>{equip.room}</td>
-            <td>View Details</td>
+            <td>
+                <Link to={`/equipment/details/${equip.id}`}>
+                    View Details
+                </Link>
+
+            </td>
         </tr>
     );
 }

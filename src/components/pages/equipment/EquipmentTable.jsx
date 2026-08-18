@@ -15,9 +15,7 @@ const EquipmentTable = ({equipmentList})=>{
             </thead>
             <tbody>
                 {/* {equipmentList.map((e)=><tr>{e.name}</tr>)} */}
-                {equipmentList.map((e)=><EquipmentRow equip={e}/>)}
-                <tr>
-                </tr>
+                {equipmentList.map((e)=><EquipmentRow key={e.id} equip={e}/>)}
             </tbody>
         </table>
     )

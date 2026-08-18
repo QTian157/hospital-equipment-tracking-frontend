@@ -7,6 +7,7 @@ import {Routes, Route, Navigate} from 'react-router'
 import AboutPage from './components/pages/AboutPage'
 import DashboardPage from './components/pages/DashboardPage'
 import EquipmentListPage from './components/pages/equipment/EquipmentListPage'
+import EquipmentDetailPage from './components/pages/equipment/EquipmentDetailPage'
 import ErrorPage from './components/pages/ErrorPage'
 
 import Equipment from './classes/Equipment';
@@ -104,6 +105,16 @@ function App() {
             }
           />
           <Route path="/about" element={ <AboutPage />}/>
+          <Route 
+            path="/equipment/details/:id" 
+            element={
+              <EquipmentDetailPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+              />
+            } 
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

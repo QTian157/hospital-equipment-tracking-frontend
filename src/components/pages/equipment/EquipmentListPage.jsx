@@ -15,10 +15,10 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     }
     return (
         <div>
-            EquipmentListPage
-            <ul>
-                {equipmentList.map((e)=> <li key={e.id}>{e.name}</li>)}
-            </ul>
+            <h1>
+                EquipmentListPage
+            </h1>
+
             <EquipmentTable equipmentList={equipmentList}/>
 
         </div>
