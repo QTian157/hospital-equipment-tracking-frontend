@@ -95,7 +95,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <DashboardPage />}/>
           <Route 
-            path="/equipment" 
+            path="/equipmentList" 
             element={
               <EquipmentListPage 
                 equipmentList={equipmentList} 

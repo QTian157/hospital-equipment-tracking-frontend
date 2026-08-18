@@ -10,7 +10,7 @@ export const NavMenu = () =>{
                     </Link>
                 </li>
                 <li>
-                    <Link className="link" to="/equipment">
+                    <Link className="link" to="/equipmentList">
                         Equipment
                     </Link>
                 </li>
