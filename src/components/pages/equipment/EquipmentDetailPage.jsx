@@ -17,6 +17,10 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
         navigate('/equipmentList');
     };
 
+    // const handleGoToEquipmentEditPage = ()=>{
+    //     navigate('/equipment/id/edit')
+    // }
+
 
     if (isLoading){
         return (<LoadingPage dataName={'equipmentDetail'}/>)
@@ -44,7 +48,19 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
                     <h1>
                         detail page
                     </h1>
-                    <p> {equip.name}</p>
+                    <p> NAME: {equip.name}</p>
+                    <p> ASSETTAG: {equip.assetTag}</p>
+                    <p> STATUS: {equip.status}</p>
+                    <h3>EUIPMENT DETAIL INFORMATION</h3>
+                    <p> TYPE: {equip.type}</p>
+                    <p> CATEGORY: {equip.category}</p>
+                    <p> SERIAL NUMBER: {equip.serialNumber}</p>
+                    <p> MOBILE: {equip.mobile}</p>
+                    <h3>LOCATION</h3>
+                    <p> DEPARTMENT: {equip.department}</p>
+                    <p> ROOM: {equip.room}</p>
+                    <GoBack text={'View All Equipments'} handleClick={handleGoToEquipmentListPage} />
+                    
                 </div>
             )
         }
