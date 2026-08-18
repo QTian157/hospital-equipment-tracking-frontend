@@ -5,7 +5,7 @@ import EquipmentTable from './EquipmentTable.jsx';
 const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     // console.log(equipmentList);
     if (isLoading) {
-        return (<LoadingPage dataName={'equipment'}/>)
+        return (<LoadingPage dataName={'equipmentList'}/>)
     }else if (equipListError) {
         return (
         <ErrorPage>
