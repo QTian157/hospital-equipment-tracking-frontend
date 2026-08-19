@@ -1,12 +1,14 @@
-import { useParams, useNavigate } from "react-router";
-import ErrorPage from '../ErrorPage';
-import GoBack from '../../common/GoBack';
-import LoadingPage from '../LoadingPage';
+import { useParams, useNavigate } from "react-router"
+import ErrorPage from '../ErrorPage'
+import GoBack from '../../common/GoBack'
+import LoadingPage from '../LoadingPage'
 
-const EquipmentEditPage = ({equipmentList, isLoading, equipListError})=>{
+import EquipmentForm from './EquipmentForm'
+
+const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList})=>{
     const {id} = useParams();
     const navigate = useNavigate();
-    
+
     const handleGoToEquipmentListPage = () => {
         navigate('/equipmentList');
     };
@@ -14,10 +16,14 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError})=>{
     if (isLoading) {
         return (<LoadingPage dataName={'equipmentEdit'}/>)
     } else if (equipListError) {
-        <ErrorPage>
-            {equipListError}
-        </ErrorPage>
+        return(
+            <ErrorPage>
+                {equipListError}
+            </ErrorPage>
+        )
     } else {
+        // Edit and DetailPage are separate routes. 
+        // If I refresh the edit page or go directly to the edit URL, I still need the page to work.
         const equip = equipmentList.find((e) => String(e.id) === id);
         if (!equip) {
             return(
@@ -30,6 +36,7 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError})=>{
             return(
                 <>
                     Edit Page: {equip.name}
+                    <EquipmentForm equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>
                 </>
             )
         }
@@ -37,5 +44,3 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError})=>{
 }
 
 export default EquipmentEditPage;
-
-// Edit and DetailPage are separate routes. If I refresh the edit page or go directly to the edit URL, I still need the page to work.
