@@ -6,7 +6,7 @@ import Input from '../../forms/inputs/Input.jsx'
 import { useNavigate } from "react-router";
 
 import Select from '../../forms/inputs/Select.jsx'
-import GoBack from '../../common/GoBack'
+import GoBack from '../../common/GoBack.jsx'
 
 import { departments, statusList } from '../../../mockData/equipmentOptions.js'
 

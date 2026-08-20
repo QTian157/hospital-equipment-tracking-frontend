@@ -11,6 +11,7 @@ import EquipmentDetailPage from './components/pages/equipment/EquipmentDetailPag
 import ErrorPage from './components/pages/ErrorPage'
 
 import EquipmentEditPage from './components/pages/equipment/EquipmentEditPage'
+import EquipmentAddPage from './components/pages/equipment/EquipmentAddPage'
 
 import Equipment from './classes/Equipment';
 
@@ -121,6 +122,20 @@ function App() {
             path="/equipment/details/:id/edit" 
             element={
               <EquipmentEditPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+                setEquipmentList={setEquipmentList}
+              />
+              
+            } 
+          
+          />
+
+          <Route 
+            path="/equipment/details/add" 
+            element={
+              <EquipmentAddPage 
                 equipmentList={equipmentList}
                 isLoading={isLoading}
                 equipListError={equipListError}

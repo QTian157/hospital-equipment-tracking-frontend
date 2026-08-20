@@ -21,6 +21,10 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
         navigate(`/equipment/details/${id}/edit`)
     }
 
+    const handleGoToEquipmentAddPage = () =>{
+        navigate('/equipment/details/add')
+    }
+
 
     if (isLoading){
         return (<LoadingPage dataName={'equipmentDetail'}/>)
@@ -61,6 +65,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
                     <p> ROOM: {equip.room}</p>
                     <GoBack text={'View All Equipments'} handleClick={handleGoToEquipmentListPage} />
                     <GoBack text={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
+                    <GoBack text={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
                     
                 </div>
             )
