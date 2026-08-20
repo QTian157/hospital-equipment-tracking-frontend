@@ -5,27 +5,33 @@ import Button from '../../forms/inputs/Button.jsx'
 import Input from '../../forms/inputs/Input.jsx'
 import { useNavigate } from "react-router";
 
+import Select from '../../forms/inputs/Select.jsx'
+import GoBack from '../../common/GoBack'
+
+import { departments, statusList } from '../../../mockData/equipmentOptions.js'
+
 
 const errorMessage ={
     equipmentNameRequired: 'Equipment Name is required.',
     AssetTagRequired: 'Equipment Asset Tag is required.',
     SerialNumberRequired: 'Equipment Serial Number is required.',
 }
-    
+
+const departmentList = departments.map((d)=> d.name);
+// const rooms = departments.find((department)=> department.name==="ICU").rooms
 
 const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
-    console.log(equip)
+    // console.log(departmentLists)
+    // console.log(rooms)
+    // console.log(equip)
     const [data, setData] = useState({...equip})
     const [hasErrors, setHasErrors] = useState(false)
 
     const inputRef = useRef(null);
     const navigate = useNavigate();
 
-    // useEffect(()=> {
-    //     inputRef.current.focus();
-    // }, []);
     useEffect(() => {
-        inputRef.current?.focus();
+        inputRef.current.focus();
     }, []);
 
     const isValid = () => {
@@ -59,6 +65,19 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
 
     }
 
+    const handleGoToEquipmentListPage = (()=> {
+        navigate("/equipmentList")
+    })
+
+    const selectedDepartment = departments.find(
+    (department) => department.name === data.department
+    );
+
+    console.log("data.department:", data.department);
+    console.log("selectedDepartment:", selectedDepartment);
+
+    const roomList = selectedDepartment ? selectedDepartment.rooms : [];
+
     return (
         <>
             <h2>Edit Equipment</h2>
@@ -73,7 +92,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
                         value={data.name}
                         ref={inputRef}
                         required={true}
-                        handleChange={handleDataChange}
+                        disabled={true}
                     />
                     <InputErrorMessage
                         hasError={hasErrors && data.name ===''}
@@ -88,13 +107,8 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
                         label="Asset Tag"
                         value={data.assetTag}
                         required={true}
-                        handleChange={handleDataChange}
+                        disabled={true}
                     />
-                    <InputErrorMessage
-                        hasError={hasErrors && data.assetTag ===''}
-                        msg={errorMessage['AssetTagRequired']}
-                    />
-
                 </FormItem>
                 
                 <FormItem>
@@ -103,19 +117,64 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
                         label="Serial Number"
                         value={data.serialNumber}
                         required={true}
-                        handleChange={handleDataChange}
+                        disabled={true}
                     />
-                    <InputErrorMessage
-                        hasError={hasErrors && data.serialNumber ===''}
-                        msg={errorMessage['SerialNumberRequired']}
-                    />
-
                 </FormItem>
- 
-                <Button type="submit" label="Edit Equipment" />
+                <FormItem>
+                    <Input 
+                        id="type"
+                        label="Type"
+                        value={data.type}
+                        required={true}
+                        disabled={true}
+                    />
+                </FormItem>
+                <FormItem>
+                    <Input 
+                        id="mobile"
+                        label="Mobile Equipment"
+                        value={data.type}
+                        required={true}
+                        disabled={true}
+                        type="checkbox"
+                    />
+                </FormItem>
+                <h3>CURRENT LOCATION</h3>
+                <FormItem>
+                    <Select 
+                        id="department"
+                        label="Department"
+                        handleSelected={handleDataChange}
+                        value={data.department}
+                        selectList={departmentList}
+                    />
+                </FormItem>
 
+                <FormItem>
+                    <Select 
+                        id="room"
+                        label="Room"
+                        handleSelected={handleDataChange}
+                        value={data.room}
+                        selectList={roomList}
+                    />
+                </FormItem>
+                <FormItem>
+                    <Select 
+                        id="status"
+                        label="Status"
+                        handleSelected={handleDataChange}
+                        value={data.status}
+                        selectList={statusList}
+                    />
+                </FormItem>
+
+                <Button type="submit" label="Save Changes" />
+                <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
+                <h3> CURRENT STATUS </h3>
             </form>
-            hahahh
+
+
         </>
     )
 }

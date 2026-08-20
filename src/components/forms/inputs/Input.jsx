@@ -1,4 +1,4 @@
-const Input = ({id, label, type, value, ref, required, handleChange, min})=>{
+const Input = ({id, label, type, value, ref, required, handleChange, min, disabled})=>{
     return (
         <>
         
@@ -13,6 +13,7 @@ const Input = ({id, label, type, value, ref, required, handleChange, min})=>{
                 ref={ref}
                 min={min}
                 onChange={handleChange}
+                disabled={disabled}
             />
         </>
     )
