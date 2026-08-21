@@ -5,6 +5,8 @@ import GoBack from '../../common/GoBack'
 import LoadingPage from '../LoadingPage'
 
 import EquipmentAddedForm from './EquipmentAddedForm.jsx'
+import EquipmentForm from './EquipmentForm.jsx'
+
 
 const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipmentList}) =>{
     if (isLoading) {
@@ -19,7 +21,7 @@ const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipment
         return (
             <>
                 <h1>Add page</h1>
-                <EquipmentAddedForm />
+                <EquipmentForm equipmentList={equipmentList} setEquipmentList={setEquipmentList} mode="add" />
             </>
         )
     }

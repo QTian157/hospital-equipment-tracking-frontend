@@ -1,7 +1,7 @@
 const InputErrorMessage = ({hasError, msg})=>{
     return(
         <>
-            {hasError && <p classNme="error">{msg}</p>}
+            {hasError && <p className="error">{msg}</p>}
         </>
     )
 }

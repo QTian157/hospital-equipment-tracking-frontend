@@ -1,7 +1,7 @@
-const Select = ({id, label, handleSelected, value, selectList})=>{
+const Select = ({id, label, handleSelected, required, value, selectList})=>{
     return (
         <>
-            <h3>{label}</h3>
+            <h3>{label}{required && '*'}</h3>
             <select
                 id={id}
                 name={label}

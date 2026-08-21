@@ -36,7 +36,7 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
             return(
                 <>
                     Edit Page: {equip.name}
-                    <EquipmentForm equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>
+                    <EquipmentForm equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList} mode="edit"/>
                 </>
             )
         }
