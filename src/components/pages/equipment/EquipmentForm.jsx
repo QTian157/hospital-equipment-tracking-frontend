@@ -41,12 +41,17 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
     // console.log(departmentLists)
     // console.log(rooms)
     // console.log(equip)
+
+    // check for edit form or add form
+    const isEditable = mode === "edit";
+    const isAdded = mode === "add";
+
     let equipData = {};
-    if (mode === "edit"){
+    if (isEditable){
         equipData = {...equip};
         // console.log(equipData);
     }
-    if (mode === "add") {
+    if (isAdded) {
         equipData = {...initialData};
     }
     const [data, setData] = useState({...equipData})
@@ -55,8 +60,6 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
     const inputRef = useRef(null);
     const navigate = useNavigate();
 
-    // check for edit form or add form
-    const isEditable = mode === "edit";
 
     useEffect(() => {
         inputRef.current.focus();
@@ -155,7 +158,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                         id="name"
                         label="Equipment Name"
                         value={data.name}
-                        ref={isEditable ? null: inputRef}
+                        ref={isAdded ? inputRef : null}
                         required={isEditable ? false : true}
                         disabled={isEditable}
                         handleSelected={handleDataChange}
