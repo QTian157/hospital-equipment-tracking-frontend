@@ -32,12 +32,12 @@ const errorMessage ={
 const EquipmentAddedForm = ({equip, equipmentList, setEquipmentList})=>{
     const [data, setData] = useState({...initialData});
     const [hassError, setHasError] = useState(null);
-    const inputRef = useRef();
+    const inputRef = useRef(null);
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        inputRef.current.focus();
-    },[])
+    // useEffect(()=>{
+    //     inputRef.current.focus();
+    // },[])
 
     const isValid = () => {
         return (
@@ -82,7 +82,8 @@ const EquipmentAddedForm = ({equip, equipmentList, setEquipmentList})=>{
     }
 
     return (
-        <>equipment add form
+        <>
+            equipment add form
         
         </>
     )
