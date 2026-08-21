@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import Select from '../../forms/inputs/Select.jsx'
 import GoBack from '../../common/GoBack.jsx'
 
-import { departments, statusList } from '../../../mockData/equipmentOptions.js'
+import { departments, statusList, categories} from '../../../mockData/equipmentOptions.js'
 
 const initialData = {
     name: '',
@@ -35,6 +35,7 @@ const errorMessage ={
 }
 
 const departmentList = departments.map((d)=> d.name);
+const categoriesList = categories.map((c)=> c.name);
 // const rooms = departments.find((department)=> department.name==="ICU").rooms
 
 const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
@@ -151,6 +152,9 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
 
     const roomList = selectedDepartment ? selectedDepartment.rooms : [];
 
+    const selectedCategory = categories.find ((category)=> category.name === data.category);
+    const typeList = selectedCategory ? selectedCategory.types : [];
+
     return (
         <>
             <h2>{mode === "edit" ? "Edit Equipment" : "Add Equipment"}</h2>
@@ -205,31 +209,33 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                     />
                 </FormItem>
                 <FormItem>
-                    <Input 
-                        id="type"
-                        label="Type:"
-                        value={data.type}
-                        required={isEditable ? false : true}
-                        disabled={isEditable}
-                        handleChange={handleDataChange}
-                    />
-                    <InputErrorMessage
-                        hasError={mode ==="add" && hasErrors && data.type ===''}
-                        msg={errorMessage['typeRequired']}
-                    />
-                </FormItem>
-                <FormItem>
-                    <Input 
+                    <Select 
                         id="category"
                         label="Category:"
                         value={data.category}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleChange={handleDataChange}
+                        handleSelected={handleDataChange}
+                        selectList={categoriesList}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.category ===''}
                         msg={errorMessage['categoryRequired']}
+                    />
+                </FormItem>
+                <FormItem>
+                    <Select
+                        id="type"
+                        label="Type:"
+                        value={data.type}
+                        required={isEditable ? false : true}
+                        disabled={isEditable}
+                        handleSelected={handleDataChange}
+                        selectList={typeList}
+                    />
+                    <InputErrorMessage
+                        hasError={mode ==="add" && hasErrors && data.type ===''}
+                        msg={errorMessage['typeRequired']}
                     />
                 </FormItem>
 

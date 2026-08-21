@@ -1,4 +1,4 @@
-const Select = ({id, label, handleSelected, ref, required, value, selectList})=>{
+const Select = ({id, label, handleSelected, ref, required, value, selectList, disabled})=>{
     return (
         <>
             <h3>{label}{required && '*'}</h3>
@@ -10,7 +10,7 @@ const Select = ({id, label, handleSelected, ref, required, value, selectList})=>
             >
                 <option value="default">Select a {label}</option>
                 {selectList.map((e)=> {
-                    return (<option key={e} value={e} ref={ref}>{e}</option>)
+                    return (<option key={e} value={e} ref={ref} disabled={disabled}>{e}</option>)
                 })}
             </select>
         </>
