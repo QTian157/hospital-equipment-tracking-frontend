@@ -92,11 +92,16 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
 
    const handleDataChange = (domEvent) => {
         const { id, value } = domEvent.target;
-        const { checked} = domEvent.checked;
         setData((prevData) => ({
             ...prevData,
             [id]: value,
-            [checked]:checked
+        }));
+    };
+    const handleDataCheckboxChange = (domEvent) => {
+        const { id, checked } = domEvent.target;
+        setData((prevData) => ({
+            ...prevData,
+            [id]:checked,
         }));
     };
 
@@ -156,12 +161,12 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Input 
                         id="name"
-                        label="Equipment Name"
+                        label="Equipment Name:"
                         value={data.name}
                         ref={isAdded ? inputRef : null}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleSelected={handleDataChange}
+                        handleChange={handleDataChange}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.name ===''}
@@ -173,11 +178,11 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Input 
                         id="assetTag"
-                        label="Asset Tag"
+                        label="Asset Tag:"
                         value={data.assetTag}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleSelected={handleDataChange}
+                        handleChange={handleDataChange}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.assetTag ===''}
@@ -188,11 +193,11 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Input 
                         id="serialNumber"
-                        label="Serial Number"
+                        label="Serial Number:"
                         value={data.serialNumber}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleSelected={handleDataChange}
+                        handleChange={handleDataChange}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.serialNumber ===''}
@@ -202,11 +207,11 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Input 
                         id="type"
-                        label="Type"
+                        label="Type:"
                         value={data.type}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleSelected={handleDataChange}
+                        handleChange={handleDataChange}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.type ===''}
@@ -216,33 +221,40 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Input 
                         id="category"
-                        label="Category"
+                        label="Category:"
                         value={data.category}
                         required={isEditable ? false : true}
                         disabled={isEditable}
-                        handleSelected={handleDataChange}
+                        handleChange={handleDataChange}
                     />
                     <InputErrorMessage
                         hasError={mode ==="add" && hasErrors && data.category ===''}
                         msg={errorMessage['categoryRequired']}
                     />
                 </FormItem>
-                <FormItem>
-                    <Input 
-                        id="mobile"
-                        label="Mobile Equipment"
-                        value={data.mobile}
-                        disabled={isEditable}
-                        type="checkbox"
-                        handleSelected={handleDataChange}
-                    />
 
+                <FormItem>
+                    {isEditable ? (
+                        <>
+                            <label>Mobility: </label>
+                            <p>{data.mobile ? "Mobile" : "Fixed"}</p>
+                        </>
+                    ) : (
+                        <Input
+                            id="mobile"
+                            label="Mobile Equipment"
+                            checked={data.mobile}
+                            type="checkbox"
+                            handleChange={handleDataCheckboxChange}
+                        />
+                    )}
                 </FormItem>
+
                 <h3>CURRENT LOCATION</h3>
                 <FormItem>
                     <Select 
                         id="department"
-                        label="Department"
+                        label="Department:"
                         ref={isEditable ? inputRef : null}
                         required={true}
                         handleSelected={handleDataChange}
@@ -258,7 +270,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 <FormItem>
                     <Select 
                         id="room"
-                        label="Room"
+                        label="Room:"
                         required={true}
                         handleSelected={handleDataChange}
                         value={data.room}

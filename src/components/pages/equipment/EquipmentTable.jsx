@@ -10,6 +10,7 @@ const EquipmentTable = ({equipmentList})=>{
                     <th>STATUS</th>
                     <th>DEPARTMENT</th>
                     <th>ROOM</th>
+                    <th>MOBILE</th>
                     <th>ACTION</th>
                 </tr>
             </thead>

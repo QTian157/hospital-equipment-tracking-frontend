@@ -8,6 +8,7 @@ const EquipmentRow = ({equip})=>{
             <td>{equip.status}</td>
             <td>{equip.department}</td>
             <td>{equip.room}</td>
+            <td>{equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</td>
             <td>
                 <Link to={`/equipment/details/${equip.id}`}>
                     View Details
