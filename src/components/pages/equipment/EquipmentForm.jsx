@@ -56,7 +56,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList})=> {
         if (!isValid()) {
             setHasErrors(true);
         } else {
-            // add equipment
+            // edit equipment
             const updatedEquipmentList=[...equipmentList].map((e) => e.id === data.id ?data : e);
             setEquipmentList( updatedEquipmentList);
 

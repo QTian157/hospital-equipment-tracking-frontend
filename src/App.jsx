@@ -133,7 +133,7 @@ function App() {
           />
 
           <Route 
-            path="/equipment/details/add" 
+            path="/equipment/add" 
             element={
               <EquipmentAddPage 
                 equipmentList={equipmentList}

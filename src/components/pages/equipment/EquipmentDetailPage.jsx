@@ -22,7 +22,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
     }
 
     const handleGoToEquipmentAddPage = () =>{
-        navigate('/equipment/details/add')
+        navigate('/equipment/add')
     }
 
 
