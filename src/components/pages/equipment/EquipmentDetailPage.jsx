@@ -2,9 +2,11 @@ import { useNavigate, useParams } from 'react-router';
 import ErrorPage from '../ErrorPage';
 import GoBack from '../../common/GoBack';
 import LoadingPage from '../LoadingPage';
+import { useState } from "react";
+import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
 
 
-const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
+const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList})=>{
     const {id} = useParams();
 
     const navigate = useNavigate();
@@ -20,6 +22,8 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
     const handleGoToEquipmentEditPage = ()=>{
         navigate(`/equipment/details/${id}/edit`)
     }
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 
 
@@ -62,7 +66,11 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError})=>{
                     <p> ROOM: {equip.room}</p>
                     <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
                     <GoBack text={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
-                    <GoBack text={'Delete Equipment'} handleClick={handleGoToEquipmentDeletePage} />
+                    <GoBack text={'Delete Equipment'} handleClick={()=> setShowDeleteModal(true)} />
+
+                    {showDeleteModal && <EquipDeleteConfirmation equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>}
+
+                    
                     
                 </div>
             )

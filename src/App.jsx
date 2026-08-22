@@ -115,6 +115,7 @@ function App() {
                 equipmentList={equipmentList}
                 isLoading={isLoading}
                 equipListError={equipListError}
+                setEquipmentList={setEquipmentList}
               />
             } 
           />
