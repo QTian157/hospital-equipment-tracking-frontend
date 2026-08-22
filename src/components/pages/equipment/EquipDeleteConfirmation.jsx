@@ -2,17 +2,18 @@ import { useNavigate} from 'react-router';
 import GoBack from '../../common/GoBack';
 
 
-const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList}) =>{
-    const nevigate = useNavigate();
-    const handleCancleToEquipmentListPage = ()=>{
-        nevigate('/equipmentList');
-    };
-    
+const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setShowDeleteModal}) =>{
+    const navigate = useNavigate();
+
+    const handleClose = ()=>{
+        setShowDeleteModal(false);
+    }
+
     const handleDeleteToEquipmentListPage = ()=>{
         // delete equip
-        const updateEquipmentList = equipmentList.filter((e) => e.id !== equip.id);
-        setEquipmentList(updateEquipmentList);
-        nevigate('/equipmentList');
+        const updatedEquipmentList = equipmentList.filter((e) => e.id !== equip.id);
+        setEquipmentList(updatedEquipmentList);
+        navigate('/equipmentList');
     };
 
 
@@ -34,7 +35,7 @@ const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList}) =>{
 
                 <p>Are you sure you want to delete this equipment?</p>
 
-                <GoBack text={'Cancle'} handleClick={handleCancleToEquipmentListPage } />
+                <GoBack text={'Cancel'} handleClick={handleClose} />
                 <GoBack text={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
 
 

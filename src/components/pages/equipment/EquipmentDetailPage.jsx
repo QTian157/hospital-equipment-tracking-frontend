@@ -68,7 +68,14 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                     <GoBack text={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
                     <GoBack text={'Delete Equipment'} handleClick={()=> setShowDeleteModal(true)} />
 
-                    {showDeleteModal && <EquipDeleteConfirmation equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>}
+                    {showDeleteModal && 
+                        <EquipDeleteConfirmation 
+                            equip={equip} 
+                            equipmentList={equipmentList} 
+                            setEquipmentList={setEquipmentList}
+                            setShowDeleteModal={setShowDeleteModal}
+                        
+                        />}
 
                     
                     
