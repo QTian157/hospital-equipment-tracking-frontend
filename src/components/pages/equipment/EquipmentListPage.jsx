@@ -38,9 +38,9 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     }
     const filteredEquipmentList = equipmentList.filter(
         (e) =>
-            e.name
-                .toLowerCase()
-                .includes(searchKeyWord.toLowerCase())
+            e.name.toLowerCase().includes(searchKeyWord.toLowerCase()) ||
+            e.assetTag.toLowerCase().includes(searchKeyWord.toLowerCase()) ||
+            e.serialNumber.toLowerCase().includes(searchKeyWord.toLowerCase())
     );
 
     const handleClear = ()=>{
@@ -69,12 +69,13 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
             {filteredEquipmentList.length === 0 ? (
                 <div>
                     <p>No equipment found. Try another keyword.</p>
-                    <GoBack text={'Go Back To Equipment List'} handleClick={handleClear} />
+                    
                     
                 </div>
             ) : (
                 <EquipmentTable equipmentList={filteredEquipmentList}/>
             )}
+            <GoBack text={'Go Back To Equipment List'} handleClick={handleClear} />
 
         </div>
     )
