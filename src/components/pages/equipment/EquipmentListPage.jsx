@@ -43,16 +43,11 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                 .includes(searchKeyWord.toLowerCase())
     );
 
-    const handleGoToEquipmentListPage = ()=>{
-        navigate("/equipmentList")
+    const handleClear = ()=>{
+        setSearchKeyWord("");
+        setKeyWord("");
     }
-    // if (filteredEquipmentList.length === 0) {
-    //     return (
-    //         <ErrorPage>
-    //             {"Sorry, the keyword is not correct"}
-    //         </ErrorPage>
-    //     )
-    // }
+
     return (
         <div>
             <h1>
@@ -74,12 +69,13 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
             {filteredEquipmentList.length === 0 ? (
                 <div>
                     <p>No equipment found. Try another keyword.</p>
+                    <GoBack text={'Go Back To Equipment List'} handleClick={handleClear} />
                     
                 </div>
             ) : (
                 <EquipmentTable equipmentList={filteredEquipmentList}/>
             )}
-            <GoBack text={'Go Back To Equipment List'} handleClick={handleGoToEquipmentListPage} />
+
         </div>
     )
 }
