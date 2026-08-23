@@ -3,7 +3,7 @@ import { useEffect, useRef, useState} from 'react';
 import InputErrorMessage from '../../forms/inputs/InputErrorMessage.jsx'
 import Button from '../../forms/inputs/Button.jsx'
 import Input from '../../forms/inputs/Input.jsx'
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import Select from '../../forms/inputs/Select.jsx'
 import GoBack from '../../common/GoBack.jsx'
@@ -46,6 +46,8 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
     // check for edit form or add form
     const isEditable = mode === "edit";
     const isAdded = mode === "add";
+
+    const {id} = useParams();
 
     let equipData = {};
     if (isEditable){
@@ -141,6 +143,9 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
 
     const handleGoToEquipmentListPage = (()=> {
         navigate("/equipmentList")
+    })
+    const handleGoToEquipmentDetailPage =(() => {
+        navigate(`/equipment/details/${id}`)
     })
 
     const selectedDepartment = departments.find(
@@ -303,7 +308,10 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 </FormItem>
 
                 <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
-                <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
+                {isEditable 
+                    ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
+                    :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
+                }
                 <h3> CURRENT STATUS </h3>
             </form>
 
