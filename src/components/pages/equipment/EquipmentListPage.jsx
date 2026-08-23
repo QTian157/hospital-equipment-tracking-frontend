@@ -5,7 +5,15 @@ import { useNavigate} from 'react-router';
 import GoBack from '../../common/GoBack';
 import { useState} from 'react'
 import Input from '../../forms/inputs/Input.jsx'
+import Select from '../../forms/inputs/Select.jsx'
 
+import { departments, statusList} from '../../../mockData/equipmentOptions.js'
+
+const initalData = {
+    department:"",
+    status: "",
+}
+const departmentList = departments.map((d)=>d.name)
 
 const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     // console.log(equipmentList);
@@ -17,6 +25,19 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     const [keyWord, setKeyWord] = useState("");
     const [searchKeyWord, setSearchKeyWord] = useState("");
 
+    // const [departmentSelect, setDepartmentSelect] = useStatus("");
+    // const [statusSelect, setStatusSelect] = useStatus("");
+
+    const [data, setData] = useState({...initalData});
+
+    const handleDataChange = (domEvent)=>{
+        const {id, value} = domEvent.target;
+        setData((prevData)=> ({
+            ...prevData,
+            [id]: value,
+        }));
+    }
+    
     const handleSearch = (domEvent) =>{
         setKeyWord(domEvent.target.value);
     }
@@ -38,14 +59,19 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     }
     const filteredEquipmentList = equipmentList.filter(
         (e) =>
+            (
             e.name.toLowerCase().includes(searchKeyWord.toLowerCase()) ||
             e.assetTag.toLowerCase().includes(searchKeyWord.toLowerCase()) ||
             e.serialNumber.toLowerCase().includes(searchKeyWord.toLowerCase())
+            ) &&
+            String(e.department).includes(String(data.department)) &&
+            String(e.status).includes(String(data.status))
     );
 
     const handleClear = ()=>{
         setSearchKeyWord("");
         setKeyWord("");
+        setData({...initalData});
     }
 
     return (
@@ -60,6 +86,24 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                 // ref={isAdded ? inputRef : null}
                 required={true}
                 handleChange={handleSearch}
+            />
+            <Select 
+                id="status"
+                label="status:"
+                value={data.status}
+                required={false}
+                disabled={false}
+                handleSelected={handleDataChange}
+                selectList={statusList}
+            />
+            <Select 
+                id="department"
+                label="department:"
+                value={data.department}
+                required={false}
+                disabled={false}
+                handleSelected={handleDataChange}
+                selectList={departmentList}
             />
             <GoBack text={'Search'} handleClick={handleSubmit} />
                 

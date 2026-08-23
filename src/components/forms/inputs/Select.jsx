@@ -7,10 +7,12 @@ const Select = ({id, label, handleSelected, ref, required, value, selectList, di
                 name={label}
                 value={value}
                 onChange={handleSelected}
+                ref={ref} 
+                disabled={disabled}
             >
-                <option value="default">Select a {label}</option>
+                <option value="">Select a {label}</option>
                 {selectList.map((e)=> {
-                    return (<option key={e} value={e} ref={ref} disabled={disabled}>{e}</option>)
+                    return (<option key={e} value={e} >{e}</option>)
                 })}
             </select>
         </>
