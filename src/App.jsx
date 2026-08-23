@@ -96,7 +96,15 @@ function App() {
         <Sidebar />
 
         <Routes>
-          <Route path="/" element={ <DashboardPage equipmentList={equipmentList}/>}/>
+          <Route 
+            path="/" 
+            element={ 
+              <DashboardPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading} 
+                equipListError={equipListError}
+              />}
+          />
           <Route 
             path="/equipmentList" 
             element={
