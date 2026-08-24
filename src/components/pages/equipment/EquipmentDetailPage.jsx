@@ -4,9 +4,13 @@ import GoBack from '../../common/GoBack';
 import LoadingPage from '../LoadingPage';
 import { useState } from "react";
 import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
+import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
 
 
-const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList})=>{
+const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, maintenanceError})=>{
+    // console.log(equipmentList);
+    // console.log(maintenanceRecords);
+
     const {id} = useParams();
 
     const navigate = useNavigate();
@@ -24,8 +28,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
     }
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-
+    
 
     if (isLoading){
         return (<LoadingPage dataName={'equipmentDetail'}/>)
@@ -37,7 +40,14 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                 <GoBack text={'Return Dashboard'} handleClick={handleGoToDashboardPage} />
             </ErrorPage>
         )
-    } else {
+    } else if (maintenanceError) {
+        return (
+            <ErrorPage>
+                {maintenanceError}
+                <GoBack text={'Return Dashboard'} handleClick={handleGoToDashboardPage} />
+            </ErrorPage>
+        )
+    }else {
         const equip = equipmentList.find((equip)=> String(equip.id) === id);
         if (!equip) {
             // equipment not found -> go back to equipment List page
@@ -48,6 +58,14 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                 </ErrorPage>
             );
         } else {
+            const equipMaintenanceRecords = maintenanceRecords.filter((record) => record.equipmentId === equip.id);
+            if (!equipMaintenanceRecords){
+                return (
+                    <div>
+                        <h2>No Records show up.</h2>
+                    </div>
+                )
+            }
             return(
                 <div>
                     <h1>
@@ -75,7 +93,21 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                             setEquipmentList={setEquipmentList}
                             setShowDeleteModal={setShowDeleteModal}
                         
-                        />}
+                        />
+                    }
+                    <h2>Maintenance Histoty</h2>
+                    {equipMaintenanceRecords.length === 0 ?(
+                        <p>No maintenance records found.</p>
+                    ):(
+                        equipMaintenanceRecords.map((record)=>(
+
+                        <div key={record.id}>
+                            <p>Maintenance Type: {record.maintenanceType}</p>
+                            <p>Status: {record.status}</p>
+                            <p>Description: {record.description}</p>
+                        </div>
+                    ))
+                )}
                 </div>
             )
         }

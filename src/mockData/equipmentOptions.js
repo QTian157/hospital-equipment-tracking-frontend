@@ -131,3 +131,16 @@ export const categories = [
         ]
     }
 ];
+
+export const maintenanceTypeList = [
+    "PREVENTIVE",
+    "CORRECTIVE",
+    "INSPECTION"
+];
+
+export const maintenanceStatusList = [
+    "SCHEDULED",
+    "IN_PROGRESS",
+    "COMPLETED",
+    "CANCELED"
+];

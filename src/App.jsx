@@ -14,6 +14,7 @@ import EquipmentEditPage from './components/pages/equipment/EquipmentEditPage'
 import EquipmentAddPage from './components/pages/equipment/EquipmentAddPage'
 
 import Equipment from './classes/Equipment';
+import MaintenanceRecord from './classes/MaintenanceRecord';
 
 
 const parseJSONText = (rawText, dataName) => {
@@ -29,12 +30,14 @@ const parseJSONText = (rawText, dataName) => {
 function App() {
   const [equipmentList, setEquipmentList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [equipListError, setEquipListError] = useState(null)
+  const [equipListError, setEquipListError] = useState(null);
+
+  const [maintenanceRecords, setMaintenanceRecords] = useState(null);
+  const [maintenanceError, setMaintenanceError] = useState(null);
   
   // useEffect(callback, dependencies);
   // callback: 1. cleanup function or 2. no return
   useEffect(()=>{
-    
     const fetchEquipmentList = async ()=>{
       let equipmentList = [];
       try{
@@ -81,11 +84,57 @@ function App() {
     fetchEquipmentList();
   }, [])
 
+
   useEffect(()=>{
-    if(isLoading && equipmentList != null) {
+    const fetchMaintenanceRecord = async () => {
+      let maintenanceRecords = [];
+      try{
+        // define fetch
+        const response = await fetch(
+            'https://docs.google.com/document/d/1h3esMGbkYT-nHb98xU8cN42CvQS7--ZB-c2LwxIJ2QM/export?format=txt'
+        );
+        // console.log("maintenance response:", response);
+        if (!response.ok){
+          throw new Error(`Unable to retrieve maintenance record (status ${response.status}).`);
+        }
+
+        const rawText = await response.text();
+        const data = parseJSONText(rawText, 'maintenanceRecord')
+        // console.log("maintenance rawText:", rawText);
+
+        maintenanceRecords = data.map((record)=> {
+          let newMaintenanceRecord = new MaintenanceRecord(
+            record.id,
+            record.equipmentId,
+            record.maintenanceType,
+            record.status,
+            record.scheduledDate,
+            record.completedDate,
+            record.performedBy,
+            record.description,
+            record.notes,
+          );
+          return newMaintenanceRecord;
+        })
+        setMaintenanceError(null);
+
+      }catch(error){
+        console.error(error.message);
+        setMaintenanceError(error.message);
+
+      }finally{
+        setMaintenanceRecords(maintenanceRecords);
+      }
+    }
+    fetchMaintenanceRecord();
+  },[])
+
+    useEffect(()=>{
+    if(isLoading && equipmentList != null && maintenanceRecords != null) {
       setIsLoading(false);
     }
-  }, [isLoading, equipmentList])
+  }, [isLoading, equipmentList, maintenanceRecords])
+
 
 
   return (
@@ -124,6 +173,8 @@ function App() {
                 isLoading={isLoading}
                 equipListError={equipListError}
                 setEquipmentList={setEquipmentList}
+                maintenanceRecords={maintenanceRecords}
+                maintenanceError={maintenanceError}
               />
             } 
           />

@@ -23,10 +23,10 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
     return (
         <div>
             <h1>Dashboard</h1>
-            <DashboardCard title="Total: " number={totalEquip}/>
-            <DashboardCard title="Available: " number={availableEquip}/>
-            <DashboardCard title="In Use: " number={inUseEquip}/>
-            <DashboardCard title="Under Maintenance: " number={maintenanceEquip}/>
+            <DashboardCard title="Total" number={totalEquip}/>
+            <DashboardCard title="Available" number={availableEquip}/>
+            <DashboardCard title="In Use" number={inUseEquip}/>
+            <DashboardCard title="Under Maintenance" number={maintenanceEquip}/>
         </div>
     )
 }
