@@ -175,6 +175,7 @@ function App() {
                 setEquipmentList={setEquipmentList}
                 maintenanceRecords={maintenanceRecords}
                 setMaintenanceRecords={setMaintenanceRecords}
+                maintenanceError={maintenanceError}
               />
             } 
           />
