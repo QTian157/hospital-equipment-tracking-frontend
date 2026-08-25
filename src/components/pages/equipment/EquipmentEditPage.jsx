@@ -6,6 +6,7 @@ import LoadingPage from '../LoadingPage'
 import EquipmentForm from './EquipmentForm'
 
 const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
+    // console.log(maintenanceRecords);
     const {id} = useParams();
     const navigate = useNavigate();
 

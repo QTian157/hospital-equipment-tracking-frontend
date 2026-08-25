@@ -174,7 +174,7 @@ function App() {
                 equipListError={equipListError}
                 setEquipmentList={setEquipmentList}
                 maintenanceRecords={maintenanceRecords}
-                maintenanceError={maintenanceError}
+                setMaintenanceRecords={setMaintenanceRecords}
               />
             } 
           />
@@ -186,6 +186,8 @@ function App() {
                 isLoading={isLoading}
                 equipListError={equipListError}
                 setEquipmentList={setEquipmentList}
+                maintenanceRecords={maintenanceRecords}
+                setMaintenanceRecords={setMaintenanceRecords}
               />
               
             } 

@@ -15,7 +15,7 @@ const maintenanceTypeList = [
     "Calibration"
 ];
 
-const MaintenanceForm = ({maintenanceData, setMaintenanceData, handleSubmit})=>{
+const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
 
     const handleMaintenanceChange = (domEvent)=>{
         const {id, value} = domEvent.target;
@@ -24,47 +24,59 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, handleSubmit})=>{
             [id]: value
         }))
     }
+
+    const isStart = action === "start"
     return (
         <div>
             <h3>MAINTENANCE INFORMATION</h3>
-            <form>
-                <formItem>
-                    <Select
-                        id="maintenanceType"
-                        label="Maintenance Type:"
-                        value={maintenanceData.maintenanceType}
-                        handleSelected={handleMaintenanceChange}
-                        selectList={maintenanceTypeList}
-                    />
-                </formItem>
-                <FormItem>
-                    <Input
-                        id="scheduledDate"
-                        label="Scheduled Date:"
-                        type="date"
-                        value={maintenanceData.scheduledDate}
-                        handleChange={handleMaintenanceChange}
-                    />
-                </FormItem>
+            <FormItem>
+                <Select
+                    id="maintenanceType"
+                    label="Maintenance Type:"
+                    value={maintenanceData.maintenanceType}
+                    handleSelected={handleMaintenanceChange}
+                    disabled={isStart ? false : true}
+                    selectList={maintenanceTypeList}
+                />
+            </FormItem>
+            <FormItem>
+                <Input
+                    id="scheduledDate"
+                    label="Scheduled Date:"
+                    type="date"
+                    disabled={isStart ? false : true}
+                    value={maintenanceData.scheduledDate}
+                    handleChange={handleMaintenanceChange}
+                />
+            </FormItem>
+            <FormItem>
+                <Input
+                    id="completedDate"
+                    label="Completed Date:"
+                    type="date"
+                    disabled={isStart ? true : false}
+                    value={maintenanceData.completedDate}
+                    handleChange={handleMaintenanceChange}
+                />
+            </FormItem>
 
-                <FormItem>
-                    <Input
-                        id="performedBy"
-                        label="Performed By:"
-                        value={maintenanceData.performedBy}
-                        handleChange={handleMaintenanceChange}
-                    />
-                </FormItem>
+            <FormItem>
+                <Input
+                    id="performedBy"
+                    label="Performed By:"
+                    value={maintenanceData.performedBy}
+                    handleChange={handleMaintenanceChange}
+                />
+            </FormItem>
 
-                <FormItem>
-                    <Input
-                        id="description"
-                        label="Description:"
-                        value={maintenanceData.description}
-                        handleChange={handleMaintenanceChange}
-                    />
-                </FormItem>
-            </form>
+            <FormItem>
+                <Input
+                    id="description"
+                    label="Description:"
+                    value={maintenanceData.description}
+                    handleChange={handleMaintenanceChange}
+                />
+            </FormItem>
         </div>
         )
 }

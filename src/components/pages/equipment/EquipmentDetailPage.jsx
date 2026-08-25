@@ -7,7 +7,7 @@ import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
 import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
 
 
-const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, maintenanceError})=>{
+const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords})=>{
     // console.log(equipmentList);
     // console.log(maintenanceRecords);
 

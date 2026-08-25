@@ -38,6 +38,7 @@ const errorMessage ={
 const initialMaintenanceData = {
     maintenanceType: '',
     scheduledDate: '',
+    completedDate: '',
     performedBy: '',
     description: '',
 };
@@ -50,7 +51,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     // console.log(departmentLists)
     // console.log(rooms)
     // console.log(equip)
-    console.log(maintenanceRecords);
+    // console.log(maintenanceRecords);
 
     // check for edit form or add form
     const isEditable = mode === "edit";
@@ -127,13 +128,40 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                 // edit equipment
                 const updatedEquipmentList=[...equipmentList].map((e) => e.id === data.id ?data : e);
                 setEquipmentList( updatedEquipmentList);
-                const equipMaintenaceRecords= [...maintenanceRecords].map((record)=>record.equipmentId === equip.id);
-                const updateEquipmentMaintenaceRecords =[
-                    ...equipMaintenaceRecords,
-                    maintenanceData
+                // maintenance starts
+                if (startMaintenance) {
+                    const idList = maintenanceRecords.map((r)=>r.id);
+                    const newRecordId = Math.max(...idList) + 1;
+                    const newMaintenanceRecord = {
+                        ...maintenanceData,
+                        id: newRecordId,
+                        equipmentId: equip.id,
+                        status: "IN_PROGRESS",
+                        completedDate: null,
+                        notes: ""
+                    }
+                    const updatedMaintenanceRecords = [
+                        ...maintenanceRecords,
+                        newMaintenanceRecord
+                    ];
+                    setMaintenanceRecords(updatedMaintenanceRecords);
+                }
+                if (endMaintenance) {
+                    const updatedMaintenanceRecords = maintenanceRecords.map((record) =>
+                        record.equipmentId === equip.id &&
+                        record.status === "IN_PROGRESS"
+                            ? {
+                                ...record,
+                                status: "COMPLETED",
+                                completedDate: maintenanceData.completedDate,
+                                performedBy: maintenanceData.performedBy,
+                                description: maintenanceData.description
+                            }
+                            : record
+                    );
 
-                ]
-                setMaintenanceRecords(updateEquipmentMaintenaceRecords);
+                    setMaintenanceRecords(updatedMaintenanceRecords);
+                }
                 navigate(`/equipment/details/${data.id}`);
             }
         }else {
@@ -155,7 +183,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                 ];
                 setEquipmentList(updatedEquipmentList);
 
-                navigate(`/equipment/details/${data.id}`);
+                navigate(`/equipment/details/${newId}`);
 
             }
         }
@@ -333,9 +361,22 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                         msg={errorMessage['statusRequired']}
                     />
                 </FormItem>
-                {startMaintenance || endMaintenance && (
+                {startMaintenance && (
                     <div>
-                        <MaintenanceForm  maintenanceData={maintenanceData} setMaintenanceData={setMaintenanceData} handleSubmit={handleSubmit}/>
+                        <MaintenanceForm  
+                            maintenanceData={maintenanceData} 
+                            setMaintenanceData={setMaintenanceData} 
+                            action="start"
+                        />
+                    </div>
+                )}
+                {endMaintenance && (
+                    <div>
+                        <MaintenanceForm  
+                            maintenanceData={maintenanceData} 
+                            setMaintenanceData={setMaintenanceData} 
+                            action="end"
+                        />
                     </div>
                 )}
 
