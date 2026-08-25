@@ -4,7 +4,6 @@ import ErrorPage from '../ErrorPage'
 import GoBack from '../../common/GoBack'
 import LoadingPage from '../LoadingPage'
 
-import EquipmentAddedForm from './EquipmentAddedForm.jsx'
 import EquipmentForm from './EquipmentForm.jsx'
 
 
