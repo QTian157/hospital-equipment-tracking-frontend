@@ -9,6 +9,7 @@ import Select from '../../forms/inputs/Select.jsx'
 import GoBack from '../../common/GoBack.jsx'
 
 import { departments, statusList, categories} from '../../../mockData/equipmentOptions.js'
+import MaintenanceForm from './MaintenanceForm.jsx'
 
 const initialData = {
     name: '',
@@ -34,14 +35,22 @@ const errorMessage ={
     statusRequired: 'Equipment Status is required.',
 }
 
+const initialMaintenanceData = {
+    maintenanceType: '',
+    scheduledDate: '',
+    performedBy: '',
+    description: '',
+};
+
 const departmentList = departments.map((d)=> d.name);
 const categoriesList = categories.map((c)=> c.name);
 // const rooms = departments.find((department)=> department.name==="ICU").rooms
 
-const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
+const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanceRecords, setMaintenanceRecords})=> {
     // console.log(departmentLists)
     // console.log(rooms)
     // console.log(equip)
+    console.log(maintenanceRecords);
 
     // check for edit form or add form
     const isEditable = mode === "edit";
@@ -60,10 +69,11 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
     const [data, setData] = useState({...equipData})
     const [hasErrors, setHasErrors] = useState(false)
 
+    const [maintenanceData, setMaintenanceData] = useState({...initialMaintenanceData});
+
     const inputRef = useRef(null);
     const navigate = useNavigate();
-
-
+    
     useEffect(() => {
         inputRef.current.focus();
     }, []);
@@ -117,7 +127,14 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                 // edit equipment
                 const updatedEquipmentList=[...equipmentList].map((e) => e.id === data.id ?data : e);
                 setEquipmentList( updatedEquipmentList);
-                navigate('/equipmentList');
+                const equipMaintenaceRecords= [...maintenanceRecords].map((record)=>record.equipmentId === equip.id);
+                const updateEquipmentMaintenaceRecords =[
+                    ...equipMaintenaceRecords,
+                    maintenanceData
+
+                ]
+                setMaintenanceRecords(updateEquipmentMaintenaceRecords);
+                navigate(`/equipment/details/${data.id}`);
             }
         }else {
             if (!isValidForAdd()) {
@@ -130,14 +147,19 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                     ...data,
                     id: newId
                 }
+
+
                 const updatedEquipmentList = [
                     ...equipmentList,
                     newEquipment 
                 ];
                 setEquipmentList(updatedEquipmentList);
-                navigate('/equipmentList');
+
+                navigate(`/equipment/details/${data.id}`);
+
             }
         }
+
 
     }
 
@@ -159,6 +181,11 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
 
     const selectedCategory = categories.find ((category)=> category.name === data.category);
     const typeList = selectedCategory ? selectedCategory.types : [];
+    
+
+    // maintenace history is under Edit mode
+    const startMaintenance  = isEditable && equip.status !== "UNDER MAINTENANCE" && data.status === "UNDER MAINTENANCE";
+    const endMaintenance  = isEditable && equip.status === "UNDER MAINTENANCE" && data.status !== "UNDER MAINTENANCE";
 
     return (
         <>
@@ -306,14 +333,20 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode})=> {
                         msg={errorMessage['statusRequired']}
                     />
                 </FormItem>
+                {startMaintenance || endMaintenance && (
+                    <div>
+                        <MaintenanceForm  maintenanceData={maintenanceData} setMaintenanceData={setMaintenanceData} handleSubmit={handleSubmit}/>
+                    </div>
+                )}
 
                 <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
                 {isEditable 
                     ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
                     :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
                 }
-                <h3> CURRENT STATUS </h3>
+
             </form>
+            <h3> CURRENT STATUS </h3>
 
 
         </>

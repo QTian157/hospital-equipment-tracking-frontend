@@ -1,4 +1,4 @@
-const DashboardCard = ({title, number})=>{
+const DashboardCard = ({title, number, children})=>{
     return (
         <div>
             <h3>{title}</h3>

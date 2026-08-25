@@ -5,7 +5,7 @@ import LoadingPage from '../LoadingPage'
 
 import EquipmentForm from './EquipmentForm'
 
-const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList})=>{
+const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -36,7 +36,14 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
             return(
                 <>
                     Edit Page: {equip.name}
-                    <EquipmentForm equip={equip} equipmentList={equipmentList} setEquipmentList={setEquipmentList} mode="edit"/>
+                    <EquipmentForm 
+                        equip={equip} 
+                        equipmentList={equipmentList} 
+                        setEquipmentList={setEquipmentList} 
+                        mode="edit" 
+                        maintenanceRecords={maintenanceRecords}
+                        setMaintenanceRecords={setMaintenanceRecords}
+                    />
                 </>
             )
         }

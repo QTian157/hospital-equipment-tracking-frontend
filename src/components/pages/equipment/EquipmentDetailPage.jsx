@@ -104,6 +104,14 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                         <div key={record.id}>
                             <p>Maintenance Type: {record.maintenanceType}</p>
                             <p>Status: {record.status}</p>
+                            {record.status === "SCHEDULED" && (
+                                <p>Scheduled:{record.scheduledDate}
+                                </p>
+                            )}
+                            {record.status === "COMPLETED" && (
+                                <p>Completed: {record.completedDate}</p>
+                            )}
+                            <p>Performance By: {record.performedBy}</p>
                             <p>Description: {record.description}</p>
                         </div>
                     ))
