@@ -8,6 +8,7 @@ import Input from '../../forms/inputs/Input.jsx'
 import Select from '../../forms/inputs/Select.jsx'
 
 import { departments, statusList} from '../../../mockData/equipmentOptions.js'
+import Button from "../../forms/inputs/Button.jsx";
 
 const initalData = {
     department:"",
@@ -105,10 +106,10 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                 handleSelected={handleDataChange}
                 selectList={departmentList}
             />
-            <GoBack text={'Search'} handleClick={handleSubmit} />
+            <Button label={'Search'} handleClick={handleSubmit} />
                 
             <div>
-                <GoBack text={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
+                <Button label={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
             </div>
             {filteredEquipmentList.length === 0 ? (
                 <div>
@@ -119,7 +120,8 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
             ) : (
                 <EquipmentTable equipmentList={filteredEquipmentList}/>
             )}
-            <GoBack text={'Go Back To Equipment List'} handleClick={handleClear} />
+            {/* Clear Filters / Reset Search */}
+            <Button label={'Clear Filters'} handleClick={handleClear} />
 
         </div>
     )

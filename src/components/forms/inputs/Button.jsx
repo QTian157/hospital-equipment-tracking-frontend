@@ -1,6 +1,6 @@
-const Button = ({id, label, type, classes, handleClick})=>{
+const Button = ({id, label, type="button", classes, handleClick})=>{
     return(
-        <button id={`${id}-button`} type={type} onClick={handleClick} className={classes}>
+        <button id={id ? `${id}-button` : undefined} type={type} onClick={handleClick} className={classes}>
             {label}
         </ button>
     )

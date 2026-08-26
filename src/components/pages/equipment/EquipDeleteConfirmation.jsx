@@ -1,6 +1,6 @@
 import { useNavigate} from 'react-router';
 import GoBack from '../../common/GoBack';
-
+import Button from '../../forms/inputs/Button.jsx'
 
 const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setShowDeleteModal}) =>{
     const navigate = useNavigate();
@@ -36,8 +36,8 @@ const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setSho
 
                 <p>Are you sure you want to delete this equipment?</p>
 
-                <GoBack text={'Cancel'} handleClick={handleClose} />
-                <GoBack text={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
+                <Button label={'Cancel'} handleClick={handleClose} />
+                <Button label={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
 
 
             </div>
