@@ -37,7 +37,7 @@ const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setSho
                 <p>Are you sure you want to delete this equipment?</p>
 
                 <Button label={'Cancel'} handleClick={handleClose} />
-                <GoBack text={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
+                <Button label={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
 
 
             </div>

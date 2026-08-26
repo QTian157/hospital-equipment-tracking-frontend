@@ -5,6 +5,7 @@ import LoadingPage from '../LoadingPage';
 import { useState } from "react";
 import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
 import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
+import Button from '../../forms/inputs/Button.jsx'
 
 
 const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords,maintenanceError})=>{
@@ -25,6 +26,9 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
 
     const handleGoToEquipmentEditPage = ()=>{
         navigate(`/equipment/details/${id}/edit`)
+    }
+    const handleShowDeleteModal = ()=> {
+        setShowDeleteModal(true)
     }
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -83,8 +87,8 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                     <p> DEPARTMENT: {equip.department}</p>
                     <p> ROOM: {equip.room}</p>
                     <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
-                    <GoBack text={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
-                    <GoBack text={'Delete Equipment'} handleClick={()=> setShowDeleteModal(true)} />
+                    <Button label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
+                    <Button label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
 
                     {showDeleteModal && 
                         <EquipDeleteConfirmation 
