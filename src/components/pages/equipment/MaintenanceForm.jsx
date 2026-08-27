@@ -27,7 +27,7 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
 
     const isStart = action === "start"
     return (
-        <div>
+        <div >
             <h3>MAINTENANCE INFORMATION</h3>
             <FormItem>
                 <Select

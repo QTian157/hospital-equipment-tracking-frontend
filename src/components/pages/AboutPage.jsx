@@ -1,26 +1,26 @@
 const AboutPage = () =>{
     return (
-        <div className="main-content">
-            <h1>
-                <strong>About</strong>
-            </h1>
-            <p>
-                About Hospital Equipment Tracking
-            </p>
-            <p>
-                Hospital Equipment Tracking is designed to help hospital staff find, view, and manage medical equipment efficiently.
-            </p>
-            <p>
-                <strong>
+        <main>
+            <div className="main-content">
+                <h1>
+                    About
+                </h1>
+                <p>
+                    About Hospital Equipment Tracking
+                </p>
+                <p>
+                    Hospital Equipment Tracking is designed to help hospital staff find, view, and manage medical equipment efficiently.
+                </p>
+                <h2>
                     KEY FEATURE
-                </strong>
-            </p>
-            <ul>
-                <li>Equipment Tracking</li>
-                <li>Quick Search </li>
-                <li>Equipment Management</li>
-            </ul>
-        </div>
+                </h2>
+                <ul>
+                    <li>Equipment Tracking</li>
+                    <li>Quick Search </li>
+                    <li>Equipment Management</li>
+                </ul>
+            </div>
+        </main>
     )
 }
 

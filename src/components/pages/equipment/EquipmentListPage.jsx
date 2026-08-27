@@ -76,54 +76,56 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     }
 
     return (
-        <div>
-            <h1>
-                EquipmentListPage
-            </h1>
-            <Input 
-                id="search"
-                label="Search Equipment"
-                value={keyWord}
-                // ref={isAdded ? inputRef : null}
-                required={true}
-                handleChange={handleSearch}
-            />
-            <Select 
-                id="status"
-                label="status:"
-                value={data.status}
-                required={false}
-                disabled={false}
-                handleSelected={handleDataChange}
-                selectList={statusList}
-            />
-            <Select 
-                id="department"
-                label="department:"
-                value={data.department}
-                required={false}
-                disabled={false}
-                handleSelected={handleDataChange}
-                selectList={departmentList}
-            />
-            <Button label={'Search'} handleClick={handleSubmit} />
-                
-            <div>
-                <Button label={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
-            </div>
-            {filteredEquipmentList.length === 0 ? (
+        <main >
+            <div className="main-content">
+                <h1>
+                    EquipmentListPage
+                </h1>
+                <Input 
+                    id="search"
+                    label="Search Equipment"
+                    value={keyWord}
+                    // ref={isAdded ? inputRef : null}
+                    required={true}
+                    handleChange={handleSearch}
+                />
+                <Select 
+                    id="status"
+                    label="status:"
+                    value={data.status}
+                    required={false}
+                    disabled={false}
+                    handleSelected={handleDataChange}
+                    selectList={statusList}
+                />
+                <Select 
+                    id="department"
+                    label="department:"
+                    value={data.department}
+                    required={false}
+                    disabled={false}
+                    handleSelected={handleDataChange}
+                    selectList={departmentList}
+                />
+                <Button label={'Search'} handleClick={handleSubmit} />
+                    
                 <div>
-                    <p>No equipment found. Try another keyword.</p>
-                    
-                    
+                    <Button label={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
                 </div>
-            ) : (
-                <EquipmentTable equipmentList={filteredEquipmentList}/>
-            )}
-            {/* Clear Filters / Reset Search */}
-            <Button label={'Clear Filters'} handleClick={handleClear} />
+                {filteredEquipmentList.length === 0 ? (
+                    <div>
+                        <p>No equipment found. Try another keyword.</p>
+                        
+                        
+                    </div>
+                ) : (
+                    <EquipmentTable equipmentList={filteredEquipmentList}/>
+                )}
+                {/* Clear Filters / Reset Search */}
+                <Button label={'Clear Filters'} handleClick={handleClear} />
 
-        </div>
+            </div>
+        </main>
     )
 }
 

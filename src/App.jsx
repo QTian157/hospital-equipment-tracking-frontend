@@ -143,74 +143,74 @@ function App() {
 
       <div className="page-container">
         <Sidebar />
-        <main>
-          <Routes>
-            <Route 
-              path="/" 
-              element={ 
-                <DashboardPage 
-                  equipmentList={equipmentList}
-                  isLoading={isLoading} 
-                  equipListError={equipListError}
-                />}
-            />
-            <Route 
-              path="/equipmentList" 
-              element={
-                <EquipmentListPage 
-                  equipmentList={equipmentList} 
-                  isLoading={isLoading} 
-                  equipListError={equipListError}
-                />
-              }
-            />
-            <Route path="/about" element={ <AboutPage />}/>
-            <Route 
-              path="/equipment/details/:id" 
-              element={
-                <EquipmentDetailPage 
-                  equipmentList={equipmentList}
-                  isLoading={isLoading}
-                  equipListError={equipListError}
-                  setEquipmentList={setEquipmentList}
-                  maintenanceRecords={maintenanceRecords}
-                  setMaintenanceRecords={setMaintenanceRecords}
-                  maintenanceError={maintenanceError}
-                />
-              } 
-            />
-            <Route 
-              path="/equipment/details/:id/edit" 
-              element={
-                <EquipmentEditPage 
-                  equipmentList={equipmentList}
-                  isLoading={isLoading}
-                  equipListError={equipListError}
-                  setEquipmentList={setEquipmentList}
-                  maintenanceRecords={maintenanceRecords}
-                  setMaintenanceRecords={setMaintenanceRecords}
-                />
-                
-              } 
-            
-            />
+        
+        <Routes>
+          <Route 
+            path="/" 
+            element={ 
+              <DashboardPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading} 
+                equipListError={equipListError}
+              />}
+          />
+          <Route 
+            path="/equipmentList" 
+            element={
+              <EquipmentListPage 
+                equipmentList={equipmentList} 
+                isLoading={isLoading} 
+                equipListError={equipListError}
+              />
+            }
+          />
+          <Route path="/about" element={ <AboutPage />}/>
+          <Route 
+            path="/equipment/details/:id" 
+            element={
+              <EquipmentDetailPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+                setEquipmentList={setEquipmentList}
+                maintenanceRecords={maintenanceRecords}
+                setMaintenanceRecords={setMaintenanceRecords}
+                maintenanceError={maintenanceError}
+              />
+            } 
+          />
+          <Route 
+            path="/equipment/details/:id/edit" 
+            element={
+              <EquipmentEditPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+                setEquipmentList={setEquipmentList}
+                maintenanceRecords={maintenanceRecords}
+                setMaintenanceRecords={setMaintenanceRecords}
+              />
+              
+            } 
+          
+          />
 
-            <Route 
-              path="/equipment/add" 
-              element={
-                <EquipmentAddPage 
-                  equipmentList={equipmentList}
-                  isLoading={isLoading}
-                  equipListError={equipListError}
-                  setEquipmentList={setEquipmentList}
-                />
-                
-              } 
-            
-            />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </main>
+          <Route 
+            path="/equipment/add" 
+            element={
+              <EquipmentAddPage 
+                equipmentList={equipmentList}
+                isLoading={isLoading}
+                equipListError={equipListError}
+                setEquipmentList={setEquipmentList}
+              />
+              
+            } 
+          
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+
 
       </div>
       <Footer />

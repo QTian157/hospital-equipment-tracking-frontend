@@ -35,8 +35,10 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
             )
         }else {
             return(
-                <>
-                    Edit Page: {equip.name}
+                <main className="main-content">
+                    <h1>
+                        Edit Page: {equip.name}
+                    </h1>
                     <EquipmentForm 
                         equip={equip} 
                         equipmentList={equipmentList} 
@@ -45,7 +47,7 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
                         maintenanceRecords={maintenanceRecords}
                         setMaintenanceRecords={setMaintenanceRecords}
                     />
-                </>
+                </main>
             )
         }
     }
