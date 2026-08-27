@@ -29,8 +29,11 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
     return (
         <main>
 
-            <div className="main-content">
+            <div className="dashboard-content">
                 <h1>Dashboard</h1>
+                <p className="dashboard-subtitle">
+                    Overview of current equipment status
+                </p>
                 <div className="dashboard-cards">
                     <DashboardCard 
                         title="Total" 

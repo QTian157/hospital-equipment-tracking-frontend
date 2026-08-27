@@ -5,14 +5,14 @@ const AboutPage = () =>{
                 <h1>
                     About
                 </h1>
-                <p>
+                <h2>
                     About Hospital Equipment Tracking
-                </p>
+                </h2>
                 <p>
                     Hospital Equipment Tracking is designed to help hospital staff find, view, and manage medical equipment efficiently.
                 </p>
                 <h2>
-                    KEY FEATURE
+                    Key Features
                 </h2>
                 <ul>
                     <li>Equipment Tracking</li>

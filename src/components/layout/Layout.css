@@ -8,7 +8,7 @@
 }
 
 aside {
-    width: 220px; /* Child 1: fixed width */
+    width: 180px; /* Child 1: fixed width */
     background-color: #2E8B57;
     padding: 24px 20px; 
 }
