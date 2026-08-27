@@ -1,8 +1,11 @@
-const DashboardCard = ({title, number, children})=>{
+const DashboardCard = ({title, number, clickable, handleClick})=>{
     return (
-        <div>
+        <div 
+            className= {`card ${clickable ? 'clickable-card' : ''}`}
+            onClick={clickable ? handleClick : undefined}
+        >
             <h3>{title}</h3>
-            <p>{number}</p>
+            <p className="card-number">{number}</p>
         </div>
     )
 }
