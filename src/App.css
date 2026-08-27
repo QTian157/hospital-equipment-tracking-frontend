@@ -39,3 +39,45 @@ button {
     font-weight: 400;
 }
 
+#body-container{
+  min-height: 100vh; /* At least the full viewport height */
+  display: flex;  /* Start flex layout */
+  flex-direction: column; /* Header, page-container, Footer stack vertically */
+}
+
+.page-container {
+    display: flex; /* Parent starts flex layout for Sidebar + main */
+    flex: 1;  /* Take the remaining height between Header and Footer */
+}
+aside {
+    width: 220px; /* Child 1: fixed width */
+    background-color: #2E8B57;
+    padding: 24px 20px; 
+}
+
+main {
+    flex: 1; /* Child 2: take the remaining width */
+}
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.link {
+    color: white;
+    text-decoration: none;
+}
+header {
+    background-color: #2E8B57;
+    color: white;
+    padding: 18px 28px;
+}
+footer {
+    background-color: #2E8B57;
+    color: white;
+    padding: 12px 28px;
+}
