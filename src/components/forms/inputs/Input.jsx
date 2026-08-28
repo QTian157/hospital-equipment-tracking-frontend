@@ -1,6 +1,6 @@
 const Input = ({id, label, type, value, ref, required, handleChange, min, disabled})=>{
     return (
-        <>
+        <div className="input">
         
             <label htmlFor={id}>
                 {label}
@@ -15,7 +15,7 @@ const Input = ({id, label, type, value, ref, required, handleChange, min, disabl
                 onChange={handleChange}
                 disabled={disabled}
             />
-        </>
+        </div>
     )
 }
 

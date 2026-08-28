@@ -1,0 +1,44 @@
+.input,
+.select {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    margin-top: 20px;
+
+}
+
+.input label{
+    color: #1F2937;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select h3 {
+    color: #1F2937;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    margin-left: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input input,
+.select select {
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    background-color: white;
+    color: #1F2937;
+    margin-left:10px;
+    margin-left:0px;
+}
+

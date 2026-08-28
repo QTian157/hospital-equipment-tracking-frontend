@@ -2,7 +2,7 @@ import EquipmentRow from './EquipmentRow.jsx'
 const EquipmentTable = ({equipmentList})=>{
     // console.log(equipmentList)
     return (
-        <table>
+        <table className="equipment-table">
             <thead>
                 <tr>
                     <th>NAME</th>

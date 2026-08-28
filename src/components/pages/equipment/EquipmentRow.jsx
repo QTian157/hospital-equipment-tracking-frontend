@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const EquipmentRow = ({equip})=>{
     return (
-        <tr>
+        <tr className="equipment-tr">
             <td>{equip.name}</td>
             <td>{equip.assetTag}</td>
             <td>{equip.status}</td>
@@ -10,7 +10,10 @@ const EquipmentRow = ({equip})=>{
             <td>{equip.room}</td>
             <td>{equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</td>
             <td>
-                <Link to={`/equipment/details/${equip.id}`}>
+                <Link 
+                    className="text-link" 
+                    to={`/equipment/details/${equip.id}`}
+                >
                     View Details
                 </Link>
 

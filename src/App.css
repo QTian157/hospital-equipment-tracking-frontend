@@ -134,4 +134,26 @@ p {
     flex: 1;  /* Take the remaining height between Header and Footer */
 }
 
+.text-link {
+    color: #2E8B57;
+    text-decoration: none;
+    font-weight: 600;
+}
 
+.text-link:visited {
+    color: #2E8B57;
+}
+
+.text-link:hover {
+    color: #26734A;
+    text-decoration: underline;
+}
+
+/* .button{
+    background-color: #2E8B57;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+} */
