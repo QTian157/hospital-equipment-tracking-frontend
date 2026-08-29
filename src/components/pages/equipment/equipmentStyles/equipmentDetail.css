@@ -1,0 +1,30 @@
+.detail-info {
+    margin-bottom: 20px;
+}
+
+.detail-info h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.detail-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.maintenance-history {
+    margin-top: 30px;
+}
+
+.maintenance-record {
+    border: 1px solid #D1D5DB;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+     max-width: 800px;
+}
+
+.maintenance-record p {
+    margin: 5px 0;
+}

@@ -76,20 +76,24 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                         <h1>
                             detail page
                         </h1>
-                        <p> NAME: {equip.name}</p>
-                        <p> ASSET TAG: {equip.assetTag}</p>
-                        <p> STATUS: {equip.status}</p>
-                        <h3>EQUIPMENT DETAIL INFORMATION</h3>
-                        <p> TYPE: {equip.type}</p>
-                        <p> CATEGORY: {equip.category}</p>
-                        <p> SERIAL NUMBER: {equip.serialNumber}</p>
-                        <p> MOBILE: {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
-                        <h3>LOCATION</h3>
-                        <p> DEPARTMENT: {equip.department}</p>
-                        <p> ROOM: {equip.room}</p>
-                        <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
-                        <Button label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
-                        <Button label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
+                        <div className="detail-info">
+                            <p> NAME: {equip.name}</p>
+                            <p> ASSET TAG: {equip.assetTag}</p>
+                            <p> STATUS: {equip.status}</p>
+                            <h3>EQUIPMENT DETAIL INFORMATION</h3>
+                            <p> TYPE: {equip.type}</p>
+                            <p> CATEGORY: {equip.category}</p>
+                            <p> SERIAL NUMBER: {equip.serialNumber}</p>
+                            <p> MOBILE: {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
+                            <h3>LOCATION</h3>
+                            <p> DEPARTMENT: {equip.department}</p>
+                            <p> ROOM: {equip.room}</p>
+                        </div>
+                        <div className="detail-buttons">
+                            <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
+                            <Button label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
+                            <Button label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
+                        </div>
 
                         {showDeleteModal && 
                             <EquipDeleteConfirmation 
@@ -100,27 +104,29 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                             
                             />
                         }
-                        <h2>Maintenance Histoty</h2>
-                        {equipMaintenanceRecords.length === 0 ?(
-                            <p>No maintenance records found.</p>
-                        ):(
-                            equipMaintenanceRecords.map((record)=>(
+                        <div className="maintenance-history">
+                            <h2>Maintenance Histoty</h2>
+                            {equipMaintenanceRecords.length === 0 ?(
+                                <p>No maintenance records found.</p>
+                            ):(
+                                equipMaintenanceRecords.map((record)=>(
 
-                            <div key={record.id}>
-                                <p>Maintenance Type: {record.maintenanceType}</p>
-                                <p>Status: {record.status}</p>
-                                {record.status === "SCHEDULED" && (
-                                    <p>Scheduled:{record.scheduledDate}
-                                    </p>
-                                )}
-                                {record.status === "COMPLETED" && (
-                                    <p>Completed: {record.completedDate}</p>
-                                )}
-                                <p>Performance By: {record.performedBy}</p>
-                                <p>Description: {record.description}</p>
-                            </div>
-                        ))
-                    )}
+                                <div className="maintenance-record" key={record.id}>
+                                    <p>Maintenance Type: {record.maintenanceType}</p>
+                                    <p>Status: {record.status}</p>
+                                    {record.status === "SCHEDULED" && (
+                                        <p>Scheduled:{record.scheduledDate}
+                                        </p>
+                                    )}
+                                    {record.status === "COMPLETED" && (
+                                        <p>Completed: {record.completedDate}</p>
+                                    )}
+                                    <p>Performance By: {record.performedBy}</p>
+                                    <p>Description: {record.description}</p>
+                                </div>
+                            ))
+                        )}
+                        </div>
                     </div>
                 </main>
             )
