@@ -42,3 +42,8 @@
     margin-left:0px;
 }
 
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
