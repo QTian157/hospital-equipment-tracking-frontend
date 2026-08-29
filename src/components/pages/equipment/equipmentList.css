@@ -1,0 +1,43 @@
+.equipment-layout{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.equipment-layout form {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#search-button{
+    margin-left: 60px;
+}
+#clear-filters-button{
+    margin-left: 20px;
+}
+
+.primary-button{
+    font-size: 16px;
+    font-weight: 600;
+
+}
+.primary-button:hover {
+    background-color: #26734A;
+}
+.secondary-button {
+    background-color: white;
+    color: #2E8B57;
+    border: 1px solid #2E8B57;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.secondary-button:hover {
+    background-color: #F3F6F4;
+}
+

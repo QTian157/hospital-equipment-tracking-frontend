@@ -10,6 +10,8 @@ import Select from '../../forms/inputs/Select.jsx'
 import { departments, statusList} from '../../../mockData/equipmentOptions.js'
 import Button from "../../forms/inputs/Button.jsx";
 
+import FormItem from "../../forms/FormItem.jsx"
+
 const initalData = {
     department:"",
     status: "",
@@ -82,48 +84,50 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                     Equipment
                 </h1>
                 <div className="equipment-layout">
-
-                    <div className="equipment-filters">
-                        <Input 
-                            id="search"
-                            label="Search Equipment"
-                            value={keyWord}
-                            // ref={isAdded ? inputRef : null}
-                            required={true}
-                            handleChange={handleSearch}
-                        />
-                        <Select 
-                            id="status"
-                            label="status"
-                            value={data.status}
-                            required={false}
-                            disabled={false}
-                            handleSelected={handleDataChange}
-                            selectList={statusList}
-                        />
-                        <Select 
-                            id="department"
-                            label="department"
-                            value={data.department}
-                            required={false}
-                            disabled={false}
-                            handleSelected={handleDataChange}
-                            selectList={departmentList}
-                        />
-                        <Button label={'Search'} handleClick={handleSubmit} classes={'primary-button'} />
+                    <form onSubmit={handleSubmit}>
+                        <FormItem>
+                            <Input 
+                                id="search"
+                                label="Search Equipment"
+                                value={keyWord}
+                                // ref={isAdded ? inputRef : null}
+                                required={true}
+                                handleChange={handleSearch}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="status"
+                                label="status"
+                                value={data.status}
+                                required={false}
+                                disabled={false}
+                                handleSelected={handleDataChange}
+                                selectList={statusList}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="department"
+                                label="department"
+                                value={data.department}
+                                required={false}
+                                disabled={false}
+                                handleSelected={handleDataChange}
+                                selectList={departmentList}
+                            />
+                        </FormItem>
+                        <Button id="search" label='Search' type="submit" classes={'primary-button'} />
                         {/* Clear Filters / Reset Search */}
-                        <Button label={'Clear Filters'} handleClick={handleClear} classes={'secondary-button'}/>
-                    </div>
+                        <Button id='clear-filters' label='Clear Filters' handleClick={handleClear} classes={'secondary-button'}/>
+                    </form>
                     <div>
-                        <Button label={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} classes={'primary-button'}/>
+                        <Button id='add-equipment' label='Add Equipment' handleClick={handleGoToEquipmentAddPage} classes={'primary-button'}/>
                     </div>
                 </div>
-
                 {filteredEquipmentList.length === 0 ? (
                     <div>
                         <p>No equipment found. Try another keyword.</p>
-                        
-                        
                     </div>
                 ) : (
                     <EquipmentTable equipmentList={filteredEquipmentList}/>

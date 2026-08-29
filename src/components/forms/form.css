@@ -1,3 +1,48 @@
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.input label{
+    color: #1F2937;
+    font-size: 20px;
+    font-weight: 600;
+}
+.select h3 {
+    color: #1F2937;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+input, select{
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    background-color: white;
+    color: #1F2937;
+}
+
+.error {
+    color: #b03a2e;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+button {
+    background-color: #2E8B57;
+    color: white;
+    border: 1px solid #2E8B57;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 
 .input,
 .select {
     display: flex;
@@ -41,9 +86,4 @@
     margin-left:10px;
     margin-left:0px;
 }
-
-.form-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
+ */

@@ -182,13 +182,9 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                     newEquipment 
                 ];
                 setEquipmentList(updatedEquipmentList);
-
                 navigate(`/equipment/details/${newId}`);
-
             }
         }
-
-
     }
 
     const handleGoToEquipmentListPage = (()=> {
@@ -397,8 +393,6 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                             :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
                         }
                     </div>
-
-
                 </form>
             </div>
 
