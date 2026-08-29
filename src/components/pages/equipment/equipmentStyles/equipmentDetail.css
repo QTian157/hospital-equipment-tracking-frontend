@@ -28,3 +28,21 @@
 .maintenance-record p {
     margin: 5px 0;
 }
+
+#edit-equip-button{
+    background-color: #2E8B57;
+    color:white;
+}
+#delete-equip-button{
+    background-color: #8b2e2e;
+    color:white;
+    border: 1px solid #8b2e2e;
+}
+
+#edit-equip-button:hover{
+    background-color: #39a869;
+}
+#delete-equip-button:hover{
+    background-color: #bd4141;
+
+}

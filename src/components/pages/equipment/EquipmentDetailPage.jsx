@@ -91,8 +91,8 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                         </div>
                         <div className="detail-buttons">
                             <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
-                            <Button label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
-                            <Button label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
+                            <Button id="edit-equip" label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
+                            <Button id="delete-equip" label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
                         </div>
 
                         {showDeleteModal && 

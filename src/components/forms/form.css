@@ -35,16 +35,3 @@ input, select{
     margin: 0;
 }
 
-button {
-    background-color: #2E8B57;
-    color: white;
-    border: 1px solid #2E8B57;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    height: 36px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
