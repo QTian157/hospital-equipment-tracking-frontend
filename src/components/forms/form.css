@@ -3,24 +3,30 @@
     flex-direction: column;
 }
 
-.input label{
-    color: #1F2937;
-    font-size: 20px;
-    font-weight: 600;
+.input,
+.select{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
 }
-.select h3 {
+
+.input label,
+.select h3{
     color: #1F2937;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
+    margin: 0;
 }
 
 input, select{
     height: 36px;
     padding: 0 10px;
+    font-size: 16px;
     border: 1px solid #D1D5DB;
     border-radius: 4px;
     background-color: white;
     color: #1F2937;
+    margin-top: 9px;
 }
 
 .error {
@@ -42,6 +48,8 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+
 /* 
 .input,
 .select {

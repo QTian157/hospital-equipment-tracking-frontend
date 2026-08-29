@@ -19,7 +19,6 @@ const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipment
     } else {
         return (
             <main className="main-content" >
-                <h1>Add page</h1>
                 <EquipmentForm equipmentList={equipmentList} setEquipmentList={setEquipmentList} mode="add" />
             </main>
         )

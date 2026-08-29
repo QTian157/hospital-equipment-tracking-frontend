@@ -3,6 +3,6 @@
 @import url('./components/forms/form.css');
 @import url('./components/layout/layout.css');
 @import url('./components/pages/pages.css');
-@import url('./components/pages/equipment/equipmentList.css');
-@import url('./components/pages/equipment/equipmentTable.css');
-@import url('./components/pages/equipment/equipmentForm.css')
+@import url('./components/pages/equipment/equipmentStyles/equipmentList.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentTable.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentForm.css')

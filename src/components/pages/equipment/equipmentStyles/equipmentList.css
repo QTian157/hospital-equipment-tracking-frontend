@@ -13,6 +13,21 @@
     flex-wrap: wrap;
 }
 
+.equipment-layout .input,
+.equipment-layout .select{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+
+}
+
+.equipment-layout input,
+.equipment-layout select{
+    margin-left: 10px;
+
+}
+
 #search-button{
     margin-left: 60px;
 }

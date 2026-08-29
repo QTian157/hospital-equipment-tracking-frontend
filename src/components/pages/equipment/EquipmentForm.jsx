@@ -212,191 +212,187 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     const endMaintenance  = isEditable && equip.status === "UNDER MAINTENANCE" && data.status !== "UNDER MAINTENANCE";
 
     return (
-        <main>
-            <div className="main-content">
-                <h2>{mode === "edit" ? "Edit Equipment" : "Add Equipment"}</h2>
-                <h3>Enter equipment information and current location</h3>
-                
-                <form 
-                    className="equipment-form"
-                    onSubmit={handleSubmit}
-                    
-                >
-                    <div className="form-info">
-                        <div className="basic-info">
+        <div className="equipForm-layout">
+            <h2>{mode === "edit" ? "Edit Equipment" : "Add Equipment"}</h2>
+            <h3>Enter equipment information and current location</h3>
+            
+            <form 
+                className="equipment-form"
+                onSubmit={handleSubmit}
+            >
+                <div className="form-info">
+                    <div className="basic-info">
+                    <h3> BASIC INFORMATION</h3>
+                        <FormItem>
+                            <Input 
+                                id="name"
+                                label="Equipment Name:"
+                                value={data.name}
+                                ref={isAdded ? inputRef : null}
+                                required={isEditable ? false : true}
+                                disabled={isEditable}
+                                handleChange={handleDataChange}
+                            />
+                            <InputErrorMessage
+                                hasError={mode ==="add" && hasErrors && data.name ===''}
+                                msg={errorMessage['equipmentNameRequired']}
+                            />
 
-                        <h3> BASIC INFORMATION</h3>
-                            <FormItem>
-                                <Input 
-                                    id="name"
-                                    label="Equipment Name:"
-                                    value={data.name}
-                                    ref={isAdded ? inputRef : null}
-                                    required={isEditable ? false : true}
-                                    disabled={isEditable}
-                                    handleChange={handleDataChange}
-                                />
-                                <InputErrorMessage
-                                    hasError={mode ==="add" && hasErrors && data.name ===''}
-                                    msg={errorMessage['equipmentNameRequired']}
-                                />
+                        </FormItem>
 
-                            </FormItem>
-
-                            <FormItem>
-                                <Input 
-                                    id="assetTag"
-                                    label="Asset Tag:"
-                                    value={data.assetTag}
-                                    required={isEditable ? false : true}
-                                    disabled={isEditable}
-                                    handleChange={handleDataChange}
+                        <FormItem>
+                            <Input 
+                                id="assetTag"
+                                label="Asset Tag:"
+                                value={data.assetTag}
+                                required={isEditable ? false : true}
+                                disabled={isEditable}
+                                handleChange={handleDataChange}
+                            />
+                            <InputErrorMessage
+                                hasError={mode ==="add" && hasErrors && data.assetTag ===''}
+                                msg={errorMessage['assetTagRequired']}
+                            />
+                        </FormItem>
+                        
+                        <FormItem>
+                            <Input 
+                                id="serialNumber"
+                                label="Serial Number:"
+                                value={data.serialNumber}
+                                required={isEditable ? false : true}
+                                disabled={isEditable}
+                                handleChange={handleDataChange}
+                            />
+                            <InputErrorMessage
+                                hasError={mode ==="add" && hasErrors && data.serialNumber ===''}
+                                msg={errorMessage['serialNumberRequired']}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="category"
+                                label="Category:"
+                                value={data.category}
+                                required={isEditable ? false : true}
+                                disabled={isEditable}
+                                handleSelected={handleDataChange}
+                                selectList={categoriesList}
+                            />
+                            <InputErrorMessage
+                                hasError={mode ==="add" && hasErrors && data.category ===''}
+                                msg={errorMessage['categoryRequired']}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select
+                                id="type"
+                                label="Type:"
+                                value={data.type}
+                                required={isEditable ? false : true}
+                                disabled={isEditable}
+                                handleSelected={handleDataChange}
+                                selectList={typeList}
+                            />
+                            <InputErrorMessage
+                                hasError={mode ==="add" && hasErrors && data.type ===''}
+                                msg={errorMessage['typeRequired']}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            {isEditable ? (
+                                <>
+                                    <label>Mobility: </label>
+                                    <p>{data.mobile ? "Mobile" : "Fixed"}</p>
+                                </>
+                            ) : (
+                                <Input
+                                    id="mobile"
+                                    label="Mobile Equipment"
+                                    checked={data.mobile}
+                                    type="checkbox"
+                                    handleChange={handleDataCheckboxChange}
                                 />
-                                <InputErrorMessage
-                                    hasError={mode ==="add" && hasErrors && data.assetTag ===''}
-                                    msg={errorMessage['assetTagRequired']}
-                                />
-                            </FormItem>
-                            
-                            <FormItem>
-                                <Input 
-                                    id="serialNumber"
-                                    label="Serial Number:"
-                                    value={data.serialNumber}
-                                    required={isEditable ? false : true}
-                                    disabled={isEditable}
-                                    handleChange={handleDataChange}
-                                />
-                                <InputErrorMessage
-                                    hasError={mode ==="add" && hasErrors && data.serialNumber ===''}
-                                    msg={errorMessage['serialNumberRequired']}
-                                />
-                            </FormItem>
-                            <FormItem>
-                                <Select 
-                                    id="category"
-                                    label="Category:"
-                                    value={data.category}
-                                    required={isEditable ? false : true}
-                                    disabled={isEditable}
-                                    handleSelected={handleDataChange}
-                                    selectList={categoriesList}
-                                />
-                                <InputErrorMessage
-                                    hasError={mode ==="add" && hasErrors && data.category ===''}
-                                    msg={errorMessage['categoryRequired']}
-                                />
-                            </FormItem>
-                            <FormItem>
-                                <Select
-                                    id="type"
-                                    label="Type:"
-                                    value={data.type}
-                                    required={isEditable ? false : true}
-                                    disabled={isEditable}
-                                    handleSelected={handleDataChange}
-                                    selectList={typeList}
-                                />
-                                <InputErrorMessage
-                                    hasError={mode ==="add" && hasErrors && data.type ===''}
-                                    msg={errorMessage['typeRequired']}
-                                />
-                            </FormItem>
-                            <FormItem>
-                                {isEditable ? (
-                                    <>
-                                        <label>Mobility: </label>
-                                        <p>{data.mobile ? "Mobile" : "Fixed"}</p>
-                                    </>
-                                ) : (
-                                    <Input
-                                        id="mobile"
-                                        label="Mobile Equipment"
-                                        checked={data.mobile}
-                                        type="checkbox"
-                                        handleChange={handleDataCheckboxChange}
-                                    />
-                                )}
-                            </FormItem>
-                        </div>
-                        <div className="location">
-
-                            <h3>CURRENT LOCATION</h3>
-                            <FormItem>
-                                <Select 
-                                    id="department"
-                                    label="Department:"
-                                    ref={isEditable ? inputRef : null}
-                                    required={true}
-                                    handleSelected={handleDataChange}
-                                    value={data.department}
-                                    selectList={departmentList}
-                                />
-                                <InputErrorMessage
-                                    hasError={hasErrors && data.department ===''}
-                                    msg={errorMessage['departmentRequired']}
-                                />
-                            </FormItem>
-
-                            <FormItem>
-                                <Select 
-                                    id="room"
-                                    label="Room:"
-                                    required={true}
-                                    handleSelected={handleDataChange}
-                                    value={data.room}
-                                    selectList={roomList}
-                                />
-                                <InputErrorMessage
-                                    hasError={hasErrors && data.room ===''}
-                                    msg={errorMessage['roomRequired']}
-                                />
-                            </FormItem>
-                            <FormItem>
-                                <Select 
-                                    id="status"
-                                    label="Status"
-                                    required={true}
-                                    handleSelected={handleDataChange}
-                                    value={data.status}
-                                    selectList={statusList}
-                                />
-                                <InputErrorMessage
-                                    hasError={hasErrors && data.status===''}
-                                    msg={errorMessage['statusRequired']}
-                                />
-                            </FormItem>
-                        </div>
-                        {startMaintenance && (
-                            <div>
-                                <MaintenanceForm  
-                                    maintenanceData={maintenanceData} 
-                                    setMaintenanceData={setMaintenanceData} 
-                                    action="start"
-                                />
-                            </div>
-                        )}
-                        {endMaintenance && (
-                            <div>
-                                <MaintenanceForm  
-                                    maintenanceData={maintenanceData} 
-                                    setMaintenanceData={setMaintenanceData} 
-                                    action="end"
-                                />
-                            </div>
-                        )}
+                            )}
+                        </FormItem>
                     </div>
-                    <div className="form-operation">
-                        <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
-                        {isEditable 
-                            ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
-                            :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
-                        }
-                    </div>
-                </form>
-            </div>
+                    <div className="location">
 
-        </main>
+                        <h3>CURRENT LOCATION</h3>
+                        <FormItem>
+                            <Select 
+                                id="department"
+                                label="Department:"
+                                ref={isEditable ? inputRef : null}
+                                required={true}
+                                handleSelected={handleDataChange}
+                                value={data.department}
+                                selectList={departmentList}
+                            />
+                            <InputErrorMessage
+                                hasError={hasErrors && data.department ===''}
+                                msg={errorMessage['departmentRequired']}
+                            />
+                        </FormItem>
+
+                        <FormItem>
+                            <Select 
+                                id="room"
+                                label="Room:"
+                                required={true}
+                                handleSelected={handleDataChange}
+                                value={data.room}
+                                selectList={roomList}
+                            />
+                            <InputErrorMessage
+                                hasError={hasErrors && data.room ===''}
+                                msg={errorMessage['roomRequired']}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="status"
+                                label="Status"
+                                required={true}
+                                handleSelected={handleDataChange}
+                                value={data.status}
+                                selectList={statusList}
+                            />
+                            <InputErrorMessage
+                                hasError={hasErrors && data.status===''}
+                                msg={errorMessage['statusRequired']}
+                            />
+                        </FormItem>
+                    </div>
+                    {startMaintenance && (
+                        <div>
+                            <MaintenanceForm  
+                                maintenanceData={maintenanceData} 
+                                setMaintenanceData={setMaintenanceData} 
+                                action="start"
+                            />
+                        </div>
+                    )}
+                    {endMaintenance && (
+                        <div>
+                            <MaintenanceForm  
+                                maintenanceData={maintenanceData} 
+                                setMaintenanceData={setMaintenanceData} 
+                                action="end"
+                            />
+                        </div>
+                    )}
+                </div>
+                <div className="form-operation">
+                    <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
+                    {isEditable 
+                        ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
+                        :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
+                    }
+                </div>
+            </form>
+        </div>
+
     )
 }
 

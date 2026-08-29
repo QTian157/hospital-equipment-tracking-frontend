@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const EquipmentRow = ({equip})=>{
     return (
-        <tr className="equipment-tr">
+        <tr>
             <td>{equip.name}</td>
             <td>{equip.assetTag}</td>
             <td>{equip.status}</td>

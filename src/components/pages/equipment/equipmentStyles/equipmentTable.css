@@ -15,10 +15,11 @@
     text-align: left;
     border-bottom: 1px solid #E5E7EB;
 }
-.equipment-tr:hover {
-    background-color: #F7FAF8;
-}
 
 .equipment-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+.equipment-table tbody tr:hover {
+    background-color: #F7FAF8;
 }
