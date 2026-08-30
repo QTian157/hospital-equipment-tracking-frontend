@@ -84,6 +84,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         setSearchKeyWord("");
         setKeyWord("");
         setData({...initalData});
+        setSearchParams({});
     }
 
 
@@ -102,7 +103,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                                 label="Search Equipment"
                                 value={keyWord}
                                 // ref={isAdded ? inputRef : null}
-                                required={true}
+                                required={false}
                                 handleChange={handleSearch}
                             />
                         </FormItem>
