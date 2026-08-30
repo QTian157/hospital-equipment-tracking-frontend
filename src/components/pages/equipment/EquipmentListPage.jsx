@@ -35,7 +35,9 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
 
     const [data, setData] = useState({...initalData});
 
-
+    // search filter for dashboard
+    const [searchParams] = useSearchParams();
+    const filteredStatus = searchParams.get("status") || data.status;
 
     const handleDataChange = (domEvent)=>{
         const {id, value} = domEvent.target;
@@ -65,9 +67,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         )
     }
 
-    // search filter for dashboard
-    const [searchParams] = useSearchParams();
-    const filteredStatus = searchParams.get("status") || data.status;
+
 
     const filteredEquipmentList = equipmentList.filter(
         (e) =>

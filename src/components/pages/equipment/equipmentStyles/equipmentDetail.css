@@ -46,3 +46,11 @@
     background-color: #6f2424;
 
 }
+
+.equipment-image {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 600px;
+    height: 440px;
+    object-fit: contain;
+}

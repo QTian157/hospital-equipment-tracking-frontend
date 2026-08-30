@@ -6,6 +6,7 @@ import { useState } from "react";
 import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
 import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
 import Button from '../../forms/inputs/Button.jsx'
+import equipmentImages from "../../../mockData/equipmentImages.js";
 
 
 const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords,maintenanceError})=>{
@@ -74,7 +75,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                 <main>
                     <div className="main-content">
                         <h1>
-                            detail page
+                            Equipment Detail
                         </h1>
                         <div className="detail-info">
                             <p> NAME: {equip.name}</p>
@@ -88,6 +89,11 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                             <h3>LOCATION</h3>
                             <p> DEPARTMENT: {equip.department}</p>
                             <p> ROOM: {equip.room}</p>
+                            <img
+                                className="equipment-image"
+                                src={equipmentImages[equip.type] || "/images/default-equipment.png"}
+                                alt={equip.name}
+                            />
                         </div>
                         <div className="detail-buttons">
                             <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
@@ -105,7 +111,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                             />
                         }
                         <div className="maintenance-history">
-                            <h2>Maintenance Histoty</h2>
+                            <h2>Maintenance History</h2>
                             {equipMaintenanceRecords.length === 0 ?(
                                 <p>No maintenance records found.</p>
                             ):(
