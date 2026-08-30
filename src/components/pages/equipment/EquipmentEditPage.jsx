@@ -5,6 +5,7 @@ import LoadingPage from '../LoadingPage'
 
 import EquipmentForm from './equipmentForm'
 
+
 const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
     // console.log(maintenanceRecords);
     const {id} = useParams();
@@ -37,7 +38,7 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
             return(
                 <main className="main-content">
                     <h1>
-                        Edit Page: {equip.name}
+                        {equip.name}
                     </h1>
                     <EquipmentForm 
                         equip={equip} 

@@ -15,7 +15,7 @@
 
 .modal-content {
     background-color: white;
-    width: 400px;
+    width: 1000px;
     padding: 25px;
 
     border-radius: 6px;
@@ -63,4 +63,21 @@
 }
 #confirm-cancle-button:hover{
     background-color: #39a869;
+}
+
+.delete-layout{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    max-width: 1200px;
+}
+.delete-layout .equipment-iamge-delete img{
+    margin-left: 180px;
+    width: 350px;
+    height: 280px;
+    object-fit: contain;
+    flex-shrink: 0;
+
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
 }

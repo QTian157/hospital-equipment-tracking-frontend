@@ -2,21 +2,27 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 1200px;
+    max-width: 2000px;
 }
 
 .form-info{
     display: flex;
-    gap: 80px;
+    gap: 150px;
+    align-items: flex-start;
 }
 
+
 .equipment-form .input ,
-.equipment-form .select{
+.equipment-form .select,
+.maintenance-form .input,
+.maintenance-form .select{
     margin-top: 30px;
 }
 
 .equipment-form .input input:not([type="checkbox"]),
-.equipment-form .select select {
+.equipment-form .select select,
+.maintenance-form .input input,
+.maintenance-form .select select{
     width: 280px;
 }
 
@@ -27,8 +33,24 @@
     margin-top: 9px;
 }
 
+.maintenance-form h3 {
+    color: #B45309;
+    background-color: #FFF3E0;
+    padding: 5px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .form-operation {
     display: flex;
     gap: 12px;
     margin-top: 36px;
+}
+.equipment-image-edit{
+    width: 430px;
+    height: 360px;
+    object-fit: contain;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
 }

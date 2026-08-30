@@ -1,7 +1,7 @@
 const Select = ({id, label, handleSelected, ref, required, value, selectList, disabled})=>{
     return (
         <div className="select">
-            <h3>{label}{required && '*'}</h3>
+            <h2>{label}{required && '*'}</h2>
             <select
                 id={id}
                 name={label}

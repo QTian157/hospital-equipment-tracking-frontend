@@ -10,6 +10,7 @@ import GoBack from '../../common/GoBack.jsx'
 
 import { departments, statusList, categories} from '../../../mockData/equipmentOptions.js'
 import MaintenanceForm from './MaintenanceForm.jsx'
+import equipmentImages from "../../../mockData/equipmentImages.js";
 
 const initialData = {
     name: '',
@@ -22,7 +23,6 @@ const initialData = {
     status: '',
     mobile: false,
 };
-
 
 const errorMessage ={
     equipmentNameRequired: 'Equipment Name is required.',
@@ -307,6 +307,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                                 </>
                             ) : (
                                 <Input
+                                
                                     id="mobile"
                                     label="Mobile Equipment"
                                     checked={data.mobile}
@@ -363,25 +364,38 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                                 msg={errorMessage['statusRequired']}
                             />
                         </FormItem>
+
                     </div>
-                    {startMaintenance && (
-                        <div>
-                            <MaintenanceForm  
-                                maintenanceData={maintenanceData} 
-                                setMaintenanceData={setMaintenanceData} 
-                                action="start"
+                    <div className="image">
+                        {
+                            isEditable&&
+                            <img
+                                className="equipment-image-edit"
+                                src={equipmentImages[equip.type] || "/images/default-equipment.png"}
+                                alt={equip.name}
                             />
-                        </div>
-                    )}
-                    {endMaintenance && (
-                        <div>
-                            <MaintenanceForm  
-                                maintenanceData={maintenanceData} 
-                                setMaintenanceData={setMaintenanceData} 
-                                action="end"
-                            />
-                        </div>
-                    )}
+                        }
+                    </div>
+                    <div>
+                        {startMaintenance && (
+                            <div>
+                                <MaintenanceForm  
+                                    maintenanceData={maintenanceData} 
+                                    setMaintenanceData={setMaintenanceData} 
+                                    action="start"
+                                />
+                            </div>
+                        )}
+                        {endMaintenance && (
+                            <div>
+                                <MaintenanceForm  
+                                    maintenanceData={maintenanceData} 
+                                    setMaintenanceData={setMaintenanceData} 
+                                    action="end"
+                                />
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className="form-operation">
                     <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
