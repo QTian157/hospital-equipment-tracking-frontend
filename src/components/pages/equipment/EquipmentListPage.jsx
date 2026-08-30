@@ -1,7 +1,7 @@
 import ErrorPage from "../ErrorPage";
 import LoadingPage from "../LoadingPage";
 import EquipmentTable from './EquipmentTable.jsx';
-import { useNavigate} from 'react-router';
+import { useNavigate, useSearchParams} from 'react-router';
 import GoBack from '../../common/GoBack';
 import { useState} from 'react'
 import Input from '../../forms/inputs/Input.jsx'
@@ -33,6 +33,8 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
 
     const [data, setData] = useState({...initalData});
 
+
+
     const handleDataChange = (domEvent)=>{
         const {id, value} = domEvent.target;
         setData((prevData)=> ({
@@ -60,6 +62,11 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         </ErrorPage>
         )
     }
+
+    // search filter for dashboard
+    const [searchParams] = useSearchParams();
+    const filteredStatus = searchParams.get("status") || data.status;
+
     const filteredEquipmentList = equipmentList.filter(
         (e) =>
             (
@@ -68,7 +75,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
             e.serialNumber.toLowerCase().includes(searchKeyWord.toLowerCase())
             ) &&
             String(e.department).includes(String(data.department)) &&
-            String(e.status).includes(String(data.status))
+            String(e.status).includes(String(filteredStatus)) 
     );
 
     const handleClear = ()=>{
@@ -76,6 +83,8 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         setKeyWord("");
         setData({...initalData});
     }
+
+
 
     return (
         <main >

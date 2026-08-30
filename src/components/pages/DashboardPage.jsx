@@ -21,8 +21,12 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
     const inUseEquip = equipmentList.filter((e) => e.status === "IN USE").length;
     const maintenanceEquip = equipmentList.filter((e) => e.status === "UNDER MAINTENANCE").length;
 
-    const handleGoToEquipmentList = ()=>{
-        navigate('/equipmentList');
+    const handleGoToFilteredEquipmentList = (status)=>{
+        if (status) {
+            navigate(`/equipmentList?status=${status}`);
+        }else {
+            navigate('/equipmentList');
+        }
     }
 
     
@@ -39,26 +43,26 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
                         title="Total" 
                         number={totalEquip}
                         clickable={true}
-                        handleClick={handleGoToEquipmentList}
+                        handleClick={()=>handleGoToFilteredEquipmentList()}
                     />
                     <DashboardCard 
                         title="Available" 
                         number={availableEquip}
                         clickable={true}
-                        handleClick={handleGoToEquipmentList}
+                        handleClick={() => handleGoToFilteredEquipmentList("AVAILABLE")}
                     />
                     <DashboardCard 
                         title="In Use" 
                         number={inUseEquip}
                         clickable={true}
-                        handleClick={handleGoToEquipmentList}
+                        handleClick={() => handleGoToFilteredEquipmentList("IN USE")}
                     
                     />
                     <DashboardCard 
                         title="Under Maintenance" 
                         number={maintenanceEquip}
                         clickable={true}
-                        handleClick={handleGoToEquipmentList}
+                        handleClick={() => handleGoToFilteredEquipmentList("UNDER MAINTENANCE")}
                     />
                 </div>
             </div>
