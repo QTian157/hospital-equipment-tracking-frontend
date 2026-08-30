@@ -7,4 +7,5 @@
 @import url('./components/pages/equipment/equipmentStyles/equipmentTable.css');
 @import url('./components/pages/equipment/equipmentStyles/equipmentForm.css');
 @import url('./components/pages/equipment/equipmentStyles/equipmentDetail.css');
-@import url('./components/pages/equipment/equipmentStyles/equipmentDeleteConfirmation.css')
+@import url('./components/pages/equipment/equipmentStyles/equipmentDeleteConfirmation.css');
+@import url('./components/statusBadge/statusBadge.css')

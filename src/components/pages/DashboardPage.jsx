@@ -3,6 +3,7 @@ import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 import { useNavigate } from "react-router";
 
+
 const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
     const navigate = useNavigate();
     

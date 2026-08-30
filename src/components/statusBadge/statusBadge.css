@@ -1,0 +1,33 @@
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+
+    background-color: #F3F4F6;
+    color: #4B5563;
+}
+
+.available {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.in-use {
+    background-color: #E3F2FD;
+    color: #1565C0;
+}
+
+.under-maintenance {
+    background-color: #FFF3E0;
+    color: #C25E00;
+}
+.in-cleaning{
+    background-color: #F3E8FF;
+    color: #7E22CE;
+}
+.out-of-service{
+    background-color: #F3F4F6;
+    color: #4B5563;
+}
