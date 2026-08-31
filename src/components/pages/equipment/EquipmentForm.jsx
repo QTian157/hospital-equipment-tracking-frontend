@@ -119,10 +119,73 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
         }));
     };
 
+
+    const handleGoToEquipmentListPage = (()=> {
+        navigate("/equipmentList")
+    })
+    const handleGoToEquipmentDetailPage =(() => {
+        navigate(`/equipment/details/${id}`)
+    })
+
+    const selectedDepartment = departments.find(
+    (department) => department.name === data.department
+    );
+
+    // console.log("data.department:", data.department);
+    // console.log("selectedDepartment:", selectedDepartment);
+
+    const roomList = selectedDepartment ? selectedDepartment.rooms : [];
+
+    const selectedCategory = categories.find ((category)=> category.name === data.category);
+    const typeList = selectedCategory ? selectedCategory.types : [];
+    
+
+    // maintenace history is under Edit mode
+    const startMaintenance  = isEditable && equip.status !== "UNDER MAINTENANCE" && data.status === "UNDER MAINTENANCE";
+    const endMaintenance  = isEditable && equip.status === "UNDER MAINTENANCE" && data.status !== "UNDER MAINTENANCE";
+
+    useEffect(() => {
+        if (endMaintenance) {
+            const currentMaintenanceRecord = maintenanceRecords.find(
+                (record) =>
+                    record.equipmentId === equip.id &&
+                    record.status === "IN_PROGRESS"
+            );
+
+            if (currentMaintenanceRecord) {
+                setMaintenanceData({
+                    maintenanceType: currentMaintenanceRecord.maintenanceType,
+                    scheduledDate: currentMaintenanceRecord.scheduledDate,
+                    completedDate: "",
+                    performedBy: currentMaintenanceRecord.performedBy,
+                    description: currentMaintenanceRecord.description,
+                });
+            }
+        }
+    }, [endMaintenance, maintenanceRecords, equip]);
+
+    const isValidateMaintenace = () =>{
+        if(startMaintenance) {
+            return (
+                maintenanceData.maintenanceType !== "" &&
+                maintenanceData.scheduledDate !== "" &&
+                maintenanceData.performedBy.trim() !== ""
+            );
+        }
+        if (endMaintenance){
+            return(
+                maintenanceData.completedDate !== "" &&
+                maintenanceData.performedBy.trim() !== ""
+            );
+        }
+        return true;
+    }
+
+    
     const handleSubmit =  (domEvent) => {
         domEvent.preventDefault();
         if (isEditable) {
-            if (!isValidForEdit()) {
+            if (!isValidForEdit() || !isValidateMaintenace()) {
                 setHasErrors(true);
             } else {
                 // edit equipment
@@ -186,50 +249,6 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
             }
         }
     }
-
-    const handleGoToEquipmentListPage = (()=> {
-        navigate("/equipmentList")
-    })
-    const handleGoToEquipmentDetailPage =(() => {
-        navigate(`/equipment/details/${id}`)
-    })
-
-    const selectedDepartment = departments.find(
-    (department) => department.name === data.department
-    );
-
-    // console.log("data.department:", data.department);
-    // console.log("selectedDepartment:", selectedDepartment);
-
-    const roomList = selectedDepartment ? selectedDepartment.rooms : [];
-
-    const selectedCategory = categories.find ((category)=> category.name === data.category);
-    const typeList = selectedCategory ? selectedCategory.types : [];
-    
-
-    // maintenace history is under Edit mode
-    const startMaintenance  = isEditable && equip.status !== "UNDER MAINTENANCE" && data.status === "UNDER MAINTENANCE";
-    const endMaintenance  = isEditable && equip.status === "UNDER MAINTENANCE" && data.status !== "UNDER MAINTENANCE";
-
-    useEffect(() => {
-        if (endMaintenance) {
-            const currentMaintenanceRecord = maintenanceRecords.find(
-                (record) =>
-                    record.equipmentId === equip.id &&
-                    record.status === "IN_PROGRESS"
-            );
-
-            if (currentMaintenanceRecord) {
-                setMaintenanceData({
-                    maintenanceType: currentMaintenanceRecord.maintenanceType,
-                    scheduledDate: currentMaintenanceRecord.scheduledDate,
-                    completedDate: "",
-                    performedBy: currentMaintenanceRecord.performedBy,
-                    description: currentMaintenanceRecord.description,
-                });
-            }
-        }
-    }, [endMaintenance, maintenanceRecords, equip]);
 
 
     return (
@@ -404,6 +423,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                                     maintenanceData={maintenanceData} 
                                     setMaintenanceData={setMaintenanceData} 
                                     action="start"
+                                    hasErrors={hasErrors}
                                 />
                             </div>
                         )}
@@ -413,13 +433,14 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                                     maintenanceData={maintenanceData} 
                                     setMaintenanceData={setMaintenanceData} 
                                     action="end"
+                                    hasErrors={hasErrors}
                                 />
                             </div>
                         )}
                     </div>
                 </div>
                 <div className="form-operation">
-                    <Button type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
+                    <Button id="submit" type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
                     {isEditable 
                         ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
                         :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />

@@ -1,5 +1,5 @@
 import FormItem from "../../forms/FormItem.jsx"
-import { useEffect, useRef, useState} from 'react';
+import InputErrorMessage from '../../forms/inputs/InputErrorMessage.jsx'
 
 import Button from '../../forms/inputs/Button.jsx'
 import Input from '../../forms/inputs/Input.jsx'
@@ -22,7 +22,7 @@ const maintenanceErrorMessage = {
     performedByRequired: "Performed By is required.",
 };
 
-const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
+const MaintenanceForm = ({maintenanceData, setMaintenanceData, action, hasErrors})=>{
 
     const handleMaintenanceChange = (domEvent)=>{
         const {id, value} = domEvent.target;
@@ -33,6 +33,7 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
     }
 
     const isStart = action === "start"
+    const isEnd = action === "end"
     return (
         <div className="maintenance-form">
             <h3>MAINTENANCE INFORMATION</h3>
@@ -45,6 +46,10 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
                     disabled={isStart ? false : true}
                     selectList={maintenanceTypeList}
                 />
+                <InputErrorMessage 
+                    hasError={isStart && hasErrors && maintenanceData.maintenanceType === ""}
+                    msg={maintenanceErrorMessage['maintenanceTypeRequired']}
+                />
             </FormItem>
             <FormItem>
                 <Input
@@ -54,6 +59,10 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
                     disabled={isStart ? false : true}
                     value={maintenanceData.scheduledDate}
                     handleChange={handleMaintenanceChange}
+                />
+                <InputErrorMessage 
+                    hasError={isStart && hasErrors && maintenanceData.scheduledDate === ""}
+                    msg={maintenanceErrorMessage['scheduledDateRequired']}
                 />
             </FormItem>
             <FormItem>
@@ -65,6 +74,10 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
                     value={maintenanceData.completedDate}
                     handleChange={handleMaintenanceChange}
                 />
+                <InputErrorMessage 
+                    hasError={isEnd && hasErrors && maintenanceData.completedDate === ""}
+                    msg={maintenanceErrorMessage['completedDateRequired']}
+                />
             </FormItem>
 
             <FormItem>
@@ -73,6 +86,10 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
                     label="Performed By:"
                     value={maintenanceData.performedBy}
                     handleChange={handleMaintenanceChange}
+                />
+                <InputErrorMessage 
+                    hasError={hasErrors && maintenanceData.performedBy.trim() === ""}
+                    msg={maintenanceErrorMessage['performedByRequired']}
                 />
             </FormItem>
 
@@ -83,6 +100,7 @@ const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
                     value={maintenanceData.description}
                     handleChange={handleMaintenanceChange}
                 />
+            
             </FormItem>
         </div>
 
