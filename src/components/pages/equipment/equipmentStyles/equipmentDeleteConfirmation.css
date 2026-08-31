@@ -36,7 +36,7 @@
 }
 
 .delete-warning {
-    margin-top: 25px !important;
+    margin-top: 25px;
     font-weight: 600;
 }
 
@@ -53,15 +53,15 @@
     border-color: #8b2e2e;
 }
 
-#confirm-delete-delete-button:hover {
+#confirm-delete-button:hover {
     background-color: #6f2424;
 }
 
-#confirm-cancle-button{
+#confirm-cancel-button{
     background-color: #2E8B57;
     color:white;
 }
-#confirm-cancle-button:hover{
+#confirm-cancel-button:hover{
     background-color: #39a869;
 }
 

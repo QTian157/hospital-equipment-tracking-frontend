@@ -104,12 +104,25 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     
 
 
-   const handleDataChange = (domEvent) => {
+    const handleDataChange = (domEvent) => {
         const { id, value } = domEvent.target;
-        setData((prevData) => ({
-            ...prevData,
-            [id]: value,
-        }));
+
+        setData((prevData) => {
+            const updatedData = {
+                ...prevData,
+                [id]: value,
+            };
+
+            if (id === "department") {
+                updatedData.room = "";
+            }
+
+            if (id === "category") {
+                updatedData.type = "";
+            }
+
+            return updatedData;
+        });
     };
     const handleDataCheckboxChange = (domEvent) => {
         const { id, checked } = domEvent.target;
@@ -194,7 +207,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                 // maintenance starts
                 if (startMaintenance) {
                     const idList = maintenanceRecords.map((r)=>r.id);
-                    const newRecordId = Math.max(...idList) + 1;
+                    const newRecordId = idList.length > 0 ? (Math.max(...idList) + 1): 1;
                     const newMaintenanceRecord = {
                         ...maintenanceData,
                         id: newRecordId,
@@ -442,8 +455,8 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                 <div className="form-operation">
                     <Button id="submit" type="submit" label={isEditable ? "Save changes" : "Add Equipment"}/>
                     {isEditable 
-                        ? <GoBack text="Cancle Changes" handleClick={handleGoToEquipmentDetailPage} /> 
-                        :<GoBack text="Cancle Changes" handleClick={handleGoToEquipmentListPage} />
+                        ? <GoBack text="Cancel Changes" handleClick={handleGoToEquipmentDetailPage} /> 
+                        :<GoBack text="Cancel Changes" handleClick={handleGoToEquipmentListPage} />
                     }
                 </div>
             </form>

@@ -41,23 +41,10 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
 
     const handleDataChange = (domEvent) => {
         const { id, value } = domEvent.target;
-
-        setData((prevData) => {
-            const updatedData = {
-                ...prevData,
-                [id]: value,
-            };
-
-            if (id === "department") {
-                updatedData.room = "";
-            }
-
-            if (id === "category") {
-                updatedData.type = "";
-            }
-
-            return updatedData;
-        });
+        setData((prevData) => ({
+            ...prevData,
+            [id]: value,
+        }));
     };
     
     const handleSearch = (domEvent) =>{
@@ -109,7 +96,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                     Equipment
                 </h1>
                 <div className="equipment-layout">
-                    <form onSubmit={handleSubmit}>
+                    <form className="equip-form" onSubmit={handleSubmit}>
                         <FormItem>
                             <Input 
                                 id="search"
@@ -142,6 +129,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                                 selectList={departmentList}
                             />
                         </FormItem>
+
                         <Button id="search" label='Search' type="submit" classes={'primary-button'} />
                         {/* Clear Filters / Reset Search */}
                         <Button id='clear-filters' label='Clear Filters' handleClick={handleClear} classes={'secondary-button'}/>
