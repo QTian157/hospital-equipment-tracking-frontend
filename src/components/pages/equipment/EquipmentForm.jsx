@@ -211,6 +211,27 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     const startMaintenance  = isEditable && equip.status !== "UNDER MAINTENANCE" && data.status === "UNDER MAINTENANCE";
     const endMaintenance  = isEditable && equip.status === "UNDER MAINTENANCE" && data.status !== "UNDER MAINTENANCE";
 
+    useEffect(() => {
+        if (endMaintenance) {
+            const currentMaintenanceRecord = maintenanceRecords.find(
+                (record) =>
+                    record.equipmentId === equip.id &&
+                    record.status === "IN_PROGRESS"
+            );
+
+            if (currentMaintenanceRecord) {
+                setMaintenanceData({
+                    maintenanceType: currentMaintenanceRecord.maintenanceType,
+                    scheduledDate: currentMaintenanceRecord.scheduledDate,
+                    completedDate: "",
+                    performedBy: currentMaintenanceRecord.performedBy,
+                    description: currentMaintenanceRecord.description,
+                });
+            }
+        }
+    }, [endMaintenance, maintenanceRecords, equip]);
+
+
     return (
         <div className="equipForm-layout">
             <h2>{mode === "edit" ? "Edit Equipment" : "Add Equipment"}</h2>
@@ -307,7 +328,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                                 </>
                             ) : (
                                 <Input
-                                
+
                                     id="mobile"
                                     label="Mobile Equipment"
                                     checked={data.mobile}

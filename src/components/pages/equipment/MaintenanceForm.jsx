@@ -15,6 +15,13 @@ const maintenanceTypeList = [
     "Calibration"
 ];
 
+const maintenanceErrorMessage = {
+    maintenanceTypeRequired: "Maintenance Type is required.",
+    scheduledDateRequired: "Scheduled Date is required.",
+    completedDateRequired: "Completed Date is required.",
+    performedByRequired: "Performed By is required.",
+};
+
 const MaintenanceForm = ({maintenanceData, setMaintenanceData, action})=>{
 
     const handleMaintenanceChange = (domEvent)=>{
