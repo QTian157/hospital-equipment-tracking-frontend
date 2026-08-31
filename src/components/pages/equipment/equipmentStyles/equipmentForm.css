@@ -85,7 +85,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .form-info {
         flex-direction: column;
         gap: 20px;

@@ -30,7 +30,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .dashboard-cards {
         grid-template-columns: 1fr;
     }
