@@ -233,7 +233,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
             } else {
                 // add equipment
                 const idList = [...equipmentList].map((e)=> e.id);
-                const newId = Math.max(...idList) + 1;
+                const newId = idList.length > 0 ? (Math.max(...idList) + 1) : 1;
                 const newEquipment = {
                     ...data,
                     id: newId
