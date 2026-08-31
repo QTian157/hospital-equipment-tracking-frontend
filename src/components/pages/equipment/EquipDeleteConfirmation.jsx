@@ -2,6 +2,8 @@ import { useNavigate} from 'react-router';
 import GoBack from '../../common/GoBack';
 import Button from '../../forms/inputs/Button.jsx'
 
+import equipmentImages from "../../../mockData/equipmentImages.js";
+
 const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setShowDeleteModal}) =>{
     const navigate = useNavigate();
 
@@ -22,23 +24,37 @@ const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setSho
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2>Delete Equipment?</h2>
-                <p> NAME: {equip.name}</p>
-                <p> ASSET TAG: {equip.assetTag}</p>
-                <p> STATUS: {equip.status}</p>
-                <h3>EQUIPMENT DETAIL INFORMATION</h3>
-                <p> TYPE: {equip.type}</p>
-                <p> CATEGORY: {equip.category}</p>
-                <p> SERIAL NUMBER: {equip.serialNumber}</p>
-                <p>MOBILE: {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
-                <h3>LOCATION</h3>
-                <p> DEPARTMENT: {equip.department}</p>
-                <p> ROOM: {equip.room}</p>
+                <div className="delete-layout">
+                    <div className="delete-equip-info">
+                        <p> <strong>NAME:</strong> {equip.name}</p>
+                        <p> <strong>ASSET TAG:</strong> {equip.assetTag}</p>
+                        <p> <strong>STATUS:</strong> {equip.status}</p>
+                        <h3>EQUIPMENT DETAIL INFORMATION</h3>
+                        <p> <strong>TYPE:</strong> {equip.type}</p>
+                        <p> <strong>CATEGORY:</strong> {equip.category}</p>
+                        <p> <strong>SERIAL NUMBER:</strong> {equip.serialNumber}</p>
+                        <p><strong>MOBILE:</strong> {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
+                        <h3>LOCATION</h3>
+                        <p> <strong>DEPARTMENT:</strong> {equip.department}</p>
+                        <p> <strong>ROOM</strong>: {equip.room}</p>
+                    </div>
+                    <div className="equipment-iamge-delete">
+                        <img
+                            className="equipment-image"
+                            src={equipmentImages[equip.type] || "/images/default-equipment.png"}
+                            alt={equip.name}
+                        />
+                    </div>
+                </div>
 
-                <p>Are you sure you want to delete this equipment?</p>
+                <p className="delete-warning">
+                    Are you sure you want to delete this equipment?
 
-                <Button label={'Cancel'} handleClick={handleClose} />
-                <Button label={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
-
+                </p>
+                <div className="modal-buttons">
+                    <Button id="confirm-cancle" label={'Cancel'} handleClick={handleClose} />
+                    <Button id="confirm-delete" label={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
+                </div>
 
             </div>
 

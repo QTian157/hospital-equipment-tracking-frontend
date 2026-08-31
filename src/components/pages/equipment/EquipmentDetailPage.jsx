@@ -6,6 +6,7 @@ import { useState } from "react";
 import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
 import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
 import Button from '../../forms/inputs/Button.jsx'
+import equipmentImages from "../../../mockData/equipmentImages.js";
 
 
 const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords,maintenanceError})=>{
@@ -71,56 +72,69 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                 )
             }
             return(
-                <div>
-                    <h1>
-                        detail page
-                    </h1>
-                    <p> NAME: {equip.name}</p>
-                    <p> ASSET TAG: {equip.assetTag}</p>
-                    <p> STATUS: {equip.status}</p>
-                    <h3>EQUIPMENT DETAIL INFORMATION</h3>
-                    <p> TYPE: {equip.type}</p>
-                    <p> CATEGORY: {equip.category}</p>
-                    <p> SERIAL NUMBER: {equip.serialNumber}</p>
-                    <p> MOBILE: {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
-                    <h3>LOCATION</h3>
-                    <p> DEPARTMENT: {equip.department}</p>
-                    <p> ROOM: {equip.room}</p>
-                    <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
-                    <Button label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
-                    <Button label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
-
-                    {showDeleteModal && 
-                        <EquipDeleteConfirmation 
-                            equip={equip} 
-                            equipmentList={equipmentList} 
-                            setEquipmentList={setEquipmentList}
-                            setShowDeleteModal={setShowDeleteModal}
-                        
-                        />
-                    }
-                    <h2>Maintenance Histoty</h2>
-                    {equipMaintenanceRecords.length === 0 ?(
-                        <p>No maintenance records found.</p>
-                    ):(
-                        equipMaintenanceRecords.map((record)=>(
-
-                        <div key={record.id}>
-                            <p>Maintenance Type: {record.maintenanceType}</p>
-                            <p>Status: {record.status}</p>
-                            {record.status === "SCHEDULED" && (
-                                <p>Scheduled:{record.scheduledDate}
-                                </p>
-                            )}
-                            {record.status === "COMPLETED" && (
-                                <p>Completed: {record.completedDate}</p>
-                            )}
-                            <p>Performance By: {record.performedBy}</p>
-                            <p>Description: {record.description}</p>
+                <main>
+                    <div className="main-content">
+                        <h1>
+                            Equipment Detail
+                        </h1>
+                        <div className="detail-info">
+                            <p> NAME: {equip.name}</p>
+                            <p> ASSET TAG: {equip.assetTag}</p>
+                            <p> STATUS: {equip.status}</p>
+                            <h3>EQUIPMENT DETAIL INFORMATION</h3>
+                            <p> TYPE: {equip.type}</p>
+                            <p> CATEGORY: {equip.category}</p>
+                            <p> SERIAL NUMBER: {equip.serialNumber}</p>
+                            <p> MOBILE: {equip.mobile ? "Mobile Equipment" : "Fixed Equipment"}</p>
+                            <h3>LOCATION</h3>
+                            <p> DEPARTMENT: {equip.department}</p>
+                            <p> ROOM: {equip.room}</p>
+                            <img
+                                className="equipment-image"
+                                src={equipmentImages[equip.type] || "/images/default-equipment.png"}
+                                alt={equip.name}
+                            />
                         </div>
-                    ))
-                )}
-                </div>
+                        <div className="detail-buttons">
+                            <GoBack text={'Back to Equipment List'} handleClick={handleGoToEquipmentListPage} />
+                            <Button id="edit-equip" label={'Edit Equipment'} handleClick={handleGoToEquipmentEditPage} />
+                            <Button id="delete-equip" label={'Delete Equipment'} handleClick={handleShowDeleteModal} />
+                        </div>
+
+                        {showDeleteModal && 
+                            <EquipDeleteConfirmation 
+                                equip={equip} 
+                                equipmentList={equipmentList} 
+                                setEquipmentList={setEquipmentList}
+                                setShowDeleteModal={setShowDeleteModal}
+                            
+                            />
+                        }
+                        <div className="maintenance-history">
+                            <h2>Maintenance History</h2>
+                            {equipMaintenanceRecords.length === 0 ?(
+                                <p>No maintenance records found.</p>
+                            ):(
+                                equipMaintenanceRecords.map((record)=>(
+
+                                <div className="maintenance-record" key={record.id}>
+                                    <p>Maintenance Type: {record.maintenanceType}</p>
+                                    <p>Status: {record.status}</p>
+                                    {record.status === "SCHEDULED" && (
+                                        <p>Scheduled:{record.scheduledDate}
+                                        </p>
+                                    )}
+                                    {record.status === "COMPLETED" && (
+                                        <p>Completed: {record.completedDate}</p>
+                                    )}
+                                    <p>Performance By: {record.performedBy}</p>
+                                    <p>Description: {record.description}</p>
+                                </div>
+                            ))
+                        )}
+                        </div>
+                    </div>
+                </main>
             )
         }
     }

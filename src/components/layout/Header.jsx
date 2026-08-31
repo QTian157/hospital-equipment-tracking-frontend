@@ -3,7 +3,9 @@
 export const Header = () =>{
     return (
         <header>
-            <strong>Hospital Equipment Tracking</strong>
+            <div className="tracker">
+                <strong>Hospital Equipment Tracking</strong>
+            </div>
         </header>
     )
 }

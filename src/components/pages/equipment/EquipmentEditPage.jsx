@@ -3,7 +3,8 @@ import ErrorPage from '../ErrorPage'
 import GoBack from '../../common/GoBack'
 import LoadingPage from '../LoadingPage'
 
-import EquipmentForm from './EquipmentForm'
+import EquipmentForm from './equipmentForm'
+
 
 const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
     // console.log(maintenanceRecords);
@@ -35,8 +36,10 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
             )
         }else {
             return(
-                <>
-                    Edit Page: {equip.name}
+                <main className="main-content">
+                    <h1>
+                        {equip.name}
+                    </h1>
                     <EquipmentForm 
                         equip={equip} 
                         equipmentList={equipmentList} 
@@ -45,7 +48,7 @@ const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipme
                         maintenanceRecords={maintenanceRecords}
                         setMaintenanceRecords={setMaintenanceRecords}
                     />
-                </>
+                </main>
             )
         }
     }

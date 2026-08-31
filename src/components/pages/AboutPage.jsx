@@ -3,19 +3,17 @@ const AboutPage = () =>{
         <main>
             <div className="main-content">
                 <h1>
-                    <strong>About</strong>
+                    About
                 </h1>
-                <p>
+                <h2>
                     About Hospital Equipment Tracking
-                </p>
+                </h2>
                 <p>
                     Hospital Equipment Tracking is designed to help hospital staff find, view, and manage medical equipment efficiently.
                 </p>
-                <p>
-                    <strong>
-                        KEY FEATURE
-                    </strong>
-                </p>
+                <h2>
+                    Key Features
+                </h2>
                 <ul>
                     <li>Equipment Tracking</li>
                     <li>Quick Search </li>

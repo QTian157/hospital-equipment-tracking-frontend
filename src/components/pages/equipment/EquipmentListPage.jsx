@@ -1,7 +1,7 @@
 import ErrorPage from "../ErrorPage";
 import LoadingPage from "../LoadingPage";
 import EquipmentTable from './EquipmentTable.jsx';
-import { useNavigate} from 'react-router';
+import { useNavigate, useSearchParams} from 'react-router';
 import GoBack from '../../common/GoBack';
 import { useState} from 'react'
 import Input from '../../forms/inputs/Input.jsx'
@@ -9,6 +9,10 @@ import Select from '../../forms/inputs/Select.jsx'
 
 import { departments, statusList} from '../../../mockData/equipmentOptions.js'
 import Button from "../../forms/inputs/Button.jsx";
+
+import FormItem from "../../forms/FormItem.jsx"
+
+
 
 const initalData = {
     department:"",
@@ -30,6 +34,10 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     // const [statusSelect, setStatusSelect] = useStatus("");
 
     const [data, setData] = useState({...initalData});
+
+    // search filter for dashboard
+    const [searchParams] = useSearchParams();
+    const filteredStatus = searchParams.get("status") || data.status;
 
     const handleDataChange = (domEvent)=>{
         const {id, value} = domEvent.target;
@@ -58,6 +66,9 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         </ErrorPage>
         )
     }
+
+
+
     const filteredEquipmentList = equipmentList.filter(
         (e) =>
             (
@@ -66,7 +77,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
             e.serialNumber.toLowerCase().includes(searchKeyWord.toLowerCase())
             ) &&
             String(e.department).includes(String(data.department)) &&
-            String(e.status).includes(String(data.status))
+            String(e.status).includes(String(filteredStatus)) 
     );
 
     const handleClear = ()=>{
@@ -75,55 +86,65 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         setData({...initalData});
     }
 
-    return (
-        <div>
-            <h1>
-                EquipmentListPage
-            </h1>
-            <Input 
-                id="search"
-                label="Search Equipment"
-                value={keyWord}
-                // ref={isAdded ? inputRef : null}
-                required={true}
-                handleChange={handleSearch}
-            />
-            <Select 
-                id="status"
-                label="status:"
-                value={data.status}
-                required={false}
-                disabled={false}
-                handleSelected={handleDataChange}
-                selectList={statusList}
-            />
-            <Select 
-                id="department"
-                label="department:"
-                value={data.department}
-                required={false}
-                disabled={false}
-                handleSelected={handleDataChange}
-                selectList={departmentList}
-            />
-            <Button label={'Search'} handleClick={handleSubmit} />
-                
-            <div>
-                <Button label={'Add Equipment'} handleClick={handleGoToEquipmentAddPage} />
-            </div>
-            {filteredEquipmentList.length === 0 ? (
-                <div>
-                    <p>No equipment found. Try another keyword.</p>
-                    
-                    
-                </div>
-            ) : (
-                <EquipmentTable equipmentList={filteredEquipmentList}/>
-            )}
-            {/* Clear Filters / Reset Search */}
-            <Button label={'Clear Filters'} handleClick={handleClear} />
 
-        </div>
+
+    return (
+        <main >
+            <div className="main-content">
+                <h1>
+                    Equipment
+                </h1>
+                <div className="equipment-layout">
+                    <form onSubmit={handleSubmit}>
+                        <FormItem>
+                            <Input 
+                                id="search"
+                                label="Search Equipment"
+                                value={keyWord}
+                                // ref={isAdded ? inputRef : null}
+                                required={true}
+                                handleChange={handleSearch}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="status"
+                                label="status"
+                                value={data.status}
+                                required={false}
+                                disabled={false}
+                                handleSelected={handleDataChange}
+                                selectList={statusList}
+                            />
+                        </FormItem>
+                        <FormItem>
+                            <Select 
+                                id="department"
+                                label="department"
+                                value={data.department}
+                                required={false}
+                                disabled={false}
+                                handleSelected={handleDataChange}
+                                selectList={departmentList}
+                            />
+                        </FormItem>
+                        <Button id="search" label='Search' type="submit" classes={'primary-button'} />
+                        {/* Clear Filters / Reset Search */}
+                        <Button id='clear-filters' label='Clear Filters' handleClick={handleClear} classes={'secondary-button'}/>
+                    </form>
+                    <div>
+                        <Button id='add-equipment' label='Add Equipment' handleClick={handleGoToEquipmentAddPage} classes={'primary-button'}/>
+                    </div>
+                </div>
+                {filteredEquipmentList.length === 0 ? (
+                    <div>
+                        <p>No equipment found. Try another keyword.</p>
+                    </div>
+                ) : (
+                    <EquipmentTable equipmentList={filteredEquipmentList}/>
+                )}
+            </div>
+        </main>
     )
 }
 

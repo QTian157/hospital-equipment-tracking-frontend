@@ -143,7 +143,7 @@ function App() {
 
       <div className="page-container">
         <Sidebar />
-
+        
         <Routes>
           <Route 
             path="/" 
@@ -210,6 +210,8 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+
+
       </div>
       <Footer />
     </div>

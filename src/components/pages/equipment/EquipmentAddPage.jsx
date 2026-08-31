@@ -4,7 +4,7 @@ import ErrorPage from '../ErrorPage'
 import GoBack from '../../common/GoBack'
 import LoadingPage from '../LoadingPage'
 
-import EquipmentForm from './EquipmentForm.jsx'
+import EquipmentForm from './equipmentForm.jsx'
 
 
 const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipmentList}) =>{
@@ -18,10 +18,9 @@ const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipment
         )
     } else {
         return (
-            <>
-                <h1>Add page</h1>
+            <main className="main-content" >
                 <EquipmentForm equipmentList={equipmentList} setEquipmentList={setEquipmentList} mode="add" />
-            </>
+            </main>
         )
     }
 }

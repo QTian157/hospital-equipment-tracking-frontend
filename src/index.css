@@ -1,0 +1,11 @@
+@import url('./App.css');
+@import url('./components/common/common.css');
+@import url('./components/forms/form.css');
+@import url('./components/layout/layout.css');
+@import url('./components/pages/pages.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentList.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentTable.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentForm.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentDetail.css');
+@import url('./components/pages/equipment/equipmentStyles/equipmentDeleteConfirmation.css');
+@import url('./components/statusBadge/statusBadge.css')

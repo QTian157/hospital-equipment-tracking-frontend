@@ -1,8 +1,11 @@
 import DashboardCard from "../common/DashboardCard";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
+import { useNavigate } from "react-router";
+
 
 const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
+    const navigate = useNavigate();
     
     if (isLoading) {
         return (<LoadingPage dataName={'equipmentList'}/>)
@@ -19,15 +22,52 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
     const inUseEquip = equipmentList.filter((e) => e.status === "IN USE").length;
     const maintenanceEquip = equipmentList.filter((e) => e.status === "UNDER MAINTENANCE").length;
 
+    const handleGoToFilteredEquipmentList = (status)=>{
+        if (status) {
+            navigate(`/equipmentList?status=${status}`);
+        }else {
+            navigate('/equipmentList');
+        }
+    }
+
     
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <DashboardCard title="Total" number={totalEquip}/>
-            <DashboardCard title="Available" number={availableEquip}/>
-            <DashboardCard title="In Use" number={inUseEquip}/>
-            <DashboardCard title="Under Maintenance" number={maintenanceEquip}/>
-        </div>
+        <main>
+
+            <div className="dashboard-content">
+                <h1>Dashboard</h1>
+                <p className="dashboard-subtitle">
+                    Overview of current equipment status
+                </p>
+                <div className="dashboard-cards">
+                    <DashboardCard 
+                        title="Total" 
+                        number={totalEquip}
+                        clickable={true}
+                        handleClick={()=>handleGoToFilteredEquipmentList()}
+                    />
+                    <DashboardCard 
+                        title="Available" 
+                        number={availableEquip}
+                        clickable={true}
+                        handleClick={() => handleGoToFilteredEquipmentList("AVAILABLE")}
+                    />
+                    <DashboardCard 
+                        title="In Use" 
+                        number={inUseEquip}
+                        clickable={true}
+                        handleClick={() => handleGoToFilteredEquipmentList("IN USE")}
+                    
+                    />
+                    <DashboardCard 
+                        title="Under Maintenance" 
+                        number={maintenanceEquip}
+                        clickable={true}
+                        handleClick={() => handleGoToFilteredEquipmentList("UNDER MAINTENANCE")}
+                    />
+                </div>
+            </div>
+        </main>
     )
 }
 

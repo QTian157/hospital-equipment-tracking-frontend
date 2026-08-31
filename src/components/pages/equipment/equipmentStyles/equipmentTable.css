@@ -1,0 +1,25 @@
+
+.equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.equipment-table thead {
+    background-color: #F3F6F4;
+}
+
+.equipment-table th,
+.equipment-table td  {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.equipment-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.equipment-table tbody tr:hover {
+    background-color: #F7FAF8;
+}

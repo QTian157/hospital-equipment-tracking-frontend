@@ -1,7 +1,7 @@
 const Select = ({id, label, handleSelected, ref, required, value, selectList, disabled})=>{
     return (
-        <>
-            <h3>{label}{required && '*'}</h3>
+        <div className="select">
+            <h2>{label}{required && '*'}</h2>
             <select
                 id={id}
                 name={label}
@@ -15,7 +15,7 @@ const Select = ({id, label, handleSelected, ref, required, value, selectList, di
                     return (<option key={e} value={e} >{e}</option>)
                 })}
             </select>
-        </>
+        </div>
     )
 }
 
