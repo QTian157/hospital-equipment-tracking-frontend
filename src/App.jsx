@@ -8,7 +8,6 @@ import AboutPage from './components/pages/AboutPage'
 import DashboardPage from './components/pages/DashboardPage'
 import EquipmentListPage from './components/pages/equipment/EquipmentListPage'
 import EquipmentDetailPage from './components/pages/equipment/EquipmentDetailPage'
-import ErrorPage from './components/pages/ErrorPage'
 
 import EquipmentEditPage from './components/pages/equipment/EquipmentEditPage'
 import EquipmentAddPage from './components/pages/equipment/EquipmentAddPage'

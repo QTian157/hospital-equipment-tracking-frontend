@@ -45,13 +45,10 @@ const initialMaintenanceData = {
 
 const departmentList = departments.map((d)=> d.name);
 const categoriesList = categories.map((c)=> c.name);
-// const rooms = departments.find((department)=> department.name==="ICU").rooms
+
 
 const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanceRecords, setMaintenanceRecords})=> {
-    // console.log(departmentLists)
-    // console.log(rooms)
-    // console.log(equip)
-    // console.log(maintenanceRecords);
+
 
     // check for edit form or add form
     const isEditable = mode === "edit";
@@ -62,7 +59,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     let equipData = {};
     if (isEditable){
         equipData = {...equip};
-        // console.log(equipData);
+
     }
     if (isAdded) {
         equipData = {...initialData};
@@ -144,9 +141,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
     (department) => department.name === data.department
     );
 
-    // console.log("data.department:", data.department);
-    // console.log("selectedDepartment:", selectedDepartment);
-
+ 
     const roomList = selectedDepartment ? selectedDepartment.rooms : [];
 
     const selectedCategory = categories.find ((category)=> category.name === data.category);

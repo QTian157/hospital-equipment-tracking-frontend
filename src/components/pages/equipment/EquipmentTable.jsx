@@ -1,6 +1,6 @@
 import EquipmentRow from './EquipmentRow.jsx'
 const EquipmentTable = ({equipmentList})=>{
-    // console.log(equipmentList)
+
     return (
         <table className="equipment-table">
             <thead>
@@ -15,7 +15,7 @@ const EquipmentTable = ({equipmentList})=>{
                 </tr>
             </thead>
             <tbody>
-                {/* {equipmentList.map((e)=><tr>{e.name}</tr>)} */}
+
                 {equipmentList.map((e)=><EquipmentRow key={e.id} equip={e}/>)}
             </tbody>
         </table>
