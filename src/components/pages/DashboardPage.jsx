@@ -16,7 +16,7 @@ const DashboardPage = ({equipmentList, isLoading, equipListError}) =>{
         </ErrorPage>
         )
     }
-    // console.log(equipmentList);
+   
     const totalEquip = equipmentList.length;
     const availableEquip = equipmentList.filter((e) => e.status === "AVAILABLE").length;
     const inUseEquip = equipmentList.filter((e) => e.status === "IN USE").length;

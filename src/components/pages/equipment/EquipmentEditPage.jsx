@@ -7,7 +7,7 @@ import EquipmentForm from './EquipmentForm.jsx'
 
 
 const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
-    // console.log(maintenanceRecords);
+
     const {id} = useParams();
     const navigate = useNavigate();
 

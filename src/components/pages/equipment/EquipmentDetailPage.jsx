@@ -4,14 +4,12 @@ import GoBack from '../../common/GoBack';
 import LoadingPage from '../LoadingPage';
 import { useState } from "react";
 import EquipDeleteConfirmation from './EquipDeleteConfirmation.jsx'
-import MaintenanceRecord from '../../../classes/MaintenanceRecord.js';
+
 import Button from '../../forms/inputs/Button.jsx'
 import equipmentImages from "../../../mockData/equipmentImages.js";
 
 
 const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords,maintenanceError})=>{
-    // console.log(equipmentList);
-    // console.log(maintenanceRecords);
 
     const {id} = useParams();
 

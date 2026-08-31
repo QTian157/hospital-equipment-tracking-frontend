@@ -1,5 +1,5 @@
 import { useNavigate} from 'react-router';
-import GoBack from '../../common/GoBack';
+
 import Button from '../../forms/inputs/Button.jsx'
 
 import equipmentImages from "../../../mockData/equipmentImages.js";

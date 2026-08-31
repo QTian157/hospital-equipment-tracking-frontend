@@ -2,7 +2,7 @@ import ErrorPage from "../ErrorPage";
 import LoadingPage from "../LoadingPage";
 import EquipmentTable from './EquipmentTable.jsx';
 import { useNavigate, useSearchParams} from 'react-router';
-import GoBack from '../../common/GoBack';
+
 import { useState} from 'react'
 import Input from '../../forms/inputs/Input.jsx'
 import Select from '../../forms/inputs/Select.jsx'
@@ -21,7 +21,7 @@ const initalData = {
 const departmentList = departments.map((d)=>d.name)
 
 const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
-    // console.log(equipmentList);
+
     const navigate = useNavigate();
     const handleGoToEquipmentAddPage = () =>{
         navigate('/equipment/add')
@@ -30,8 +30,6 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     const [keyWord, setKeyWord] = useState("");
     const [searchKeyWord, setSearchKeyWord] = useState("");
 
-    // const [departmentSelect, setDepartmentSelect] = useStatus("");
-    // const [statusSelect, setStatusSelect] = useStatus("");
 
     const [data, setData] = useState({...initalData});
 
