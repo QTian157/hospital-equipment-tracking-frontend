@@ -1,10 +1,9 @@
 
-import { useParams, useNavigate } from "react-router"
 import ErrorPage from '../ErrorPage'
-import GoBack from '../../common/GoBack'
+
 import LoadingPage from '../LoadingPage'
 
-import EquipmentForm from './equipmentForm.jsx'
+import EquipmentForm from './EquipmentForm.jsx'
 
 
 const EquipmentAddPage = ({equipmentList, isLoading,equipListError, setEquipmentList}) =>{

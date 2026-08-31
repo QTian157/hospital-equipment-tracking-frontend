@@ -3,7 +3,7 @@ import ErrorPage from '../ErrorPage'
 import GoBack from '../../common/GoBack'
 import LoadingPage from '../LoadingPage'
 
-import EquipmentForm from './equipmentForm'
+import EquipmentForm from './EquipmentForm.jsx'
 
 
 const EquipmentEditPage = ({equipmentList, isLoading, equipListError, setEquipmentList, maintenanceRecords, setMaintenanceRecords})=>{
