@@ -36,16 +36,16 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     const [data, setData] = useState({...initalData});
 
     // search filter for dashboard
-    const [searchParams] = useSearchParams();
-    const filteredStatus = searchParams.get("status") || data.status;
+    const [searchParams, setSearchParams] = useSearchParams();
+    const filteredStatus = data.status || searchParams.get("status") || "";
 
-    const handleDataChange = (domEvent)=>{
-        const {id, value} = domEvent.target;
-        setData((prevData)=> ({
+    const handleDataChange = (domEvent) => {
+        const { id, value } = domEvent.target;
+        setData((prevData) => ({
             ...prevData,
             [id]: value,
         }));
-    }
+    };
     
     const handleSearch = (domEvent) =>{
         setKeyWord(domEvent.target.value);
@@ -84,6 +84,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
         setSearchKeyWord("");
         setKeyWord("");
         setData({...initalData});
+        setSearchParams({});
     }
 
 
@@ -95,14 +96,14 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                     Equipment
                 </h1>
                 <div className="equipment-layout">
-                    <form onSubmit={handleSubmit}>
+                    <form className="equip-form" onSubmit={handleSubmit}>
                         <FormItem>
                             <Input 
                                 id="search"
                                 label="Search Equipment"
                                 value={keyWord}
                                 // ref={isAdded ? inputRef : null}
-                                required={true}
+                                required={false}
                                 handleChange={handleSearch}
                             />
                         </FormItem>
@@ -128,6 +129,7 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
                                 selectList={departmentList}
                             />
                         </FormItem>
+
                         <Button id="search" label='Search' type="submit" classes={'primary-button'} />
                         {/* Clear Filters / Reset Search */}
                         <Button id='clear-filters' label='Clear Filters' handleClick={handleClear} classes={'secondary-button'}/>

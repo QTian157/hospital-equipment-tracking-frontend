@@ -23,3 +23,19 @@
     color: #6B7280;
     margin: 6px 0 24px;
 }
+
+@media (max-width: 1000px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-content {
+        margin-left: 0;
+    }
+}

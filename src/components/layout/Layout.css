@@ -42,3 +42,20 @@ aside {
 }
 
 
+#hamburger-button {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    #hamburger-button {
+        display: block;
+    }
+
+    aside {
+        display: none;
+    }
+
+    aside.menu-open {
+        display: block;
+    }
+}

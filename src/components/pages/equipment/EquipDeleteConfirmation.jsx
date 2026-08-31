@@ -52,7 +52,7 @@ const EquipDeleteConfirmation = ({equip, equipmentList, setEquipmentList, setSho
 
                 </p>
                 <div className="modal-buttons">
-                    <Button id="confirm-cancle" label={'Cancel'} handleClick={handleClose} />
+                    <Button id="confirm-cancel" label={'Cancel'} handleClick={handleClose} />
                     <Button id="confirm-delete" label={'Delete'} handleClick={handleDeleteToEquipmentListPage} />
                 </div>
 

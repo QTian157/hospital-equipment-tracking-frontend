@@ -54,3 +54,47 @@
     border: 1px solid #D1D5DB;
     border-radius: 6px;
 }
+
+
+.equipment-form input:disabled,
+.equipment-form select:disabled {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+#submit-button{
+    background-color:#2E8B57;
+    color: white;
+    border: 1px solid #2E8B57;
+}
+#submit-button:hover{
+    background-color:#34a063;
+}
+
+@media (max-width: 1000px) {
+    .form-info {
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .equipment-image-edit {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .form-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .equipment-form .input input:not([type="checkbox"]),
+    .equipment-form .select select,
+    .maintenance-form .input input,
+    .maintenance-form .select select {
+        width: 100%;
+    }
+}
