@@ -47,7 +47,7 @@ function App() {
         if (!response.ok) {
           throw new Error(`Unable to retrieve equipment list (status ${response.status}).`);
         }
-        // await new Promise((resolve) => setTimeout(resolve, 3000)); 
+        
         // test the loading
         const rawText = await response.text();
         const data = parseJSONText(rawText, 'equipmentList');
@@ -68,7 +68,7 @@ function App() {
           return newEquipment
         })
 
-        // console.log(equipmentList)
+        
         // Clear any previous error when fetch succeeds
         setEquipListError(null);
       }catch(error){
@@ -92,14 +92,14 @@ function App() {
         const response = await fetch(
             'https://docs.google.com/document/d/1h3esMGbkYT-nHb98xU8cN42CvQS7--ZB-c2LwxIJ2QM/export?format=txt'
         );
-        // console.log("maintenance response:", response);
+        
         if (!response.ok){
           throw new Error(`Unable to retrieve maintenance record (status ${response.status}).`);
         }
 
         const rawText = await response.text();
         const data = parseJSONText(rawText, 'maintenanceRecord')
-        // console.log("maintenance rawText:", rawText);
+
 
         maintenanceRecords = data.map((record)=> {
           let newMaintenanceRecord = new MaintenanceRecord(
