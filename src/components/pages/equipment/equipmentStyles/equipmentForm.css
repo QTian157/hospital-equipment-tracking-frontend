@@ -72,3 +72,29 @@
 #submit-button:hover{
     background-color:#34a063;
 }
+
+@media (max-width: 1000px) {
+    .form-info {
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .equipment-image-edit {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .equipment-form .input input:not([type="checkbox"]),
+    .equipment-form .select select,
+    .maintenance-form .input input,
+    .maintenance-form .select select {
+        width: 100%;
+    }
+}
