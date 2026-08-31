@@ -39,13 +39,26 @@ const EquipmentListPage = ({equipmentList, isLoading, equipListError}) =>{
     const [searchParams, setSearchParams] = useSearchParams();
     const filteredStatus = data.status || searchParams.get("status") || "";
 
-    const handleDataChange = (domEvent)=>{
-        const {id, value} = domEvent.target;
-        setData((prevData)=> ({
-            ...prevData,
-            [id]: value,
-        }));
-    }
+    const handleDataChange = (domEvent) => {
+        const { id, value } = domEvent.target;
+
+        setData((prevData) => {
+            const updatedData = {
+                ...prevData,
+                [id]: value,
+            };
+
+            if (id === "department") {
+                updatedData.room = "";
+            }
+
+            if (id === "category") {
+                updatedData.type = "";
+            }
+
+            return updatedData;
+        });
+    };
     
     const handleSearch = (domEvent) =>{
         setKeyWord(domEvent.target.value);
