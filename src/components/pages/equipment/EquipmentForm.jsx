@@ -156,7 +156,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
         if (endMaintenance) {
             const currentMaintenanceRecord = maintenanceRecords.find(
                 (record) =>
-                    record.equipmentId === equip.id &&
+                    String(record.equipmentId) === String(equip.id) &&
                     record.status === "IN_PROGRESS"
             );
 
@@ -219,7 +219,7 @@ const EquipmentForm = ({equip, equipmentList, setEquipmentList, mode, maintenanc
                 }
                 if (endMaintenance) {
                     const updatedMaintenanceRecords = maintenanceRecords.map((record) =>
-                        record.equipmentId === equip.id &&
+                        String(record.equipmentId) === String(equip.id) &&
                         record.status === "IN_PROGRESS"
                             ? {
                                 ...record,

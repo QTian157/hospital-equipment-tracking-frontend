@@ -51,7 +51,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
             </ErrorPage>
         )
     }else {
-        const equip = equipmentList.find((equip)=> String(equip.id) === id);
+        const equip = equipmentList.find((equip)=> String(equip.id) === String(id));
         if (!equip) {
             // equipment not found -> go back to equipment List page
             return(
@@ -61,7 +61,7 @@ const EquipmentDetailPage = ({equipmentList, isLoading, equipListError, setEquip
                 </ErrorPage>
             );
         } else {
-            const equipMaintenanceRecords = maintenanceRecords.filter((record) => record.equipmentId === equip.id);
+            const equipMaintenanceRecords = maintenanceRecords.filter((record) => String(record.equipmentId) === String(equip.id));
             if (!equipMaintenanceRecords){
                 return (
                     <div>

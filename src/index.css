@@ -1,7 +1,7 @@
 @import url('./App.css');
 @import url('./components/common/common.css');
 @import url('./components/forms/form.css');
-@import url('./components/layout/layout.css');
+@import url('./components/layout/Layout.css');
 @import url('./components/pages/pages.css');
 @import url('./components/pages/equipment/equipmentStyles/equipmentList.css');
 @import url('./components/pages/equipment/equipmentStyles/equipmentTable.css');
